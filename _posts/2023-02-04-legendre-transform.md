@@ -1,4 +1,4 @@
----
+which will turn---
 title: 'Visualising the Legendre Transform'
 permalink: /posts/2023/02/visualising_the_legendre_transform/
 tags:
@@ -26,6 +26,7 @@ But if $f$ is a convex function there is another way of describing the same curv
 
 ![image](legendre_transform/good_lines.gif)
 
+How do we characterise this set of lines? To make it easier to talk about, we start by giving it a name. We will refer to the set of lines which never rise above the curve $\mathcal{L}$. Lines in $\mathcal{L}$ are allowed to touch the curve, they just can never enter the area above it. 
 
 We can write the equation for a line as $y=mx+c$, where $m$ is the gradient and $c$ is the intercept. Now, for any particular convex curve, some lines will intersect the curve and rise above it, while others will not. To see this, let's choose a value for the gradient $m$ and try out different, increasing, values of $c$.
 
