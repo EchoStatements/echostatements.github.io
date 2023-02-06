@@ -14,7 +14,7 @@ The key idea we will be building towards is this: a convex function defines a cu
 
 ![image](legendre_transform/output.gif)
 
-By thinking about how to move from one of the description to the other, we will see how the Legendre transform emerges. In doing so, we will build an understanding of the following image, where we go from the orignal convex function (left) to its Legendre transform (right):
+By thinking about how to move from one description to the other, we will see how the Legendre transform emerges. In doing so, we will build an understanding of the following image, where we go from the orignal convex function (left) to its Legendre transform (right):
 
 ![image](legendre_transform/static_legendre.png)
 
@@ -26,7 +26,7 @@ But if $f$ is a convex function there is another way of describing the same curv
 
 ![image](legendre_transform/good_lines.gif)
 
-How do we characterise this set of lines? To make it easier to talk about, we start by giving it a name. We will refer to the set of lines which never rise above the curve $\mathcal{L}$. Lines in $\mathcal{L}$ are allowed to touch the curve, they just can never enter the area above it. 
+How do we characterise this set of lines? To make it easier to talk about, we start by giving it a name. We will refer to the set of lines which never rise above the curve as $\mathcal{L}$. Lines in $\mathcal{L}$ are allowed to touch the curve, they just can never enter the area above it. 
 
 We can write the equation for a line as $y=mx+c$, where $m$ is the gradient and $c$ is the intercept. Now, for any particular convex curve, some lines will intersect the curve and rise above it, while others will not. To see this, let's choose a value for the gradient $m$ and try out different, increasing, values of $c$.
 
@@ -44,7 +44,7 @@ For largest allowed value of $c$, the line touches the curve.[^1] Say that the l
 
 ![image](legendre_transform/tangent.gif)
 
-Again, we can rearrange to get that in general $c \leq f(x) - mx$. But since equality is achieved when $x=x_0$, we have that $c$ is the smallest value that $f(x) - mx$ can take. We can therefore define $c$ by
+Again, we can rearrange to get that in general $c \leq f(x) - mx$. But since equality is achieved when $x=x_0$, we have that $c$ is the smallest value that $f(x) - mx$ takes. We can therefore define $c$ by
 
 $$c = \min_{x \in \mathbb{R}} f(x) - mx. \nonumber$$
 
@@ -77,16 +77,16 @@ We can visualise what the transform is doing like so:
 ![image](legendre_transform/legendre.gif)
 
 Finally, we can see how the Legendre transform can be used to construct the curve of a convex function from a set of straight lines.
-On the left we have $y = f^*(m)$. On the right, we build $y=f(x)$ by taking values of $m$, then plotting $y=mx - f^\ast(m)$. With just a few lines we get a good approximation of the shape of the curve, with the approximation becoming exact if we draw the line for every $m$ gradient where there is a $y=mx+c$ in $\mathcal{L}$.
+On the left we have $y = f^*(m)$. On the right, we build $y=f(x)$ by taking values of $m$, then plotting $y=mx - f^\ast(m)$. With just a few lines we get a reasonable approximation of the shape of the curve, with the approximation becoming exact if we draw the line for every $m$ gradient where there is a $y=mx+c$ in $\mathcal{L}$.
 ![image](legendre_transform/final.gif)
 
 ## Further Reading
 
 Some resources if you are interested in learning more about the Legendre transform. 
-- [Making Sense of the Legendre Transform](https://www2.ph.ed.ac.uk/~mevans/sp/LT070902.pdf)[^3] gives a more formal treatment, with several example applications.
+- [Making Sense of the Legendre Transform](https://www2.ph.ed.ac.uk/~mevans/sp/LT070902.pdf)[^3] gives a more complete treatment, with several example applications.
 - [Legendre Transformation for Dummies](https://profoundphysics.com/legendre-transformations-for-dummies-intuition-and-examples/)[^3] gives an alternative tutorial, which shows how to compute the Legendre transform in practice.
 - [Legendre-Fenchel transformations in a Nutshell](https://www.ise.ncsu.edu/fuzzy-neural/wp-content/uploads/sites/9/2019/01/or706-LF-transform-1.pdf) explores properties of the more general _Legendre-Fenchel_ transform
-- [Legendre transformation and information geometry](https://www.lix.polytechnique.fr/~nielsen/Note-LegendreTransformation.pdf) takes a similar approach to deriving the Legendre transform geometrically in a more general setting, considering the area above the curve as an intersection of half-planes.
+- [Legendre transformation and information geometry](https://www.lix.polytechnique.fr/~nielsen/Note-LegendreTransformation.pdf) takes a similar approach to interpreting the Legendre transform geometrically in a more general setting, considering the area above the curve as an intersection of half-planes.
 
 _Thanks to [Sara Summerton](https://sara-es.github.io/) and [Andrew Webb](https://twitter.com/AndrewM_Webb) for their feedback on draft versions of this post._
 
