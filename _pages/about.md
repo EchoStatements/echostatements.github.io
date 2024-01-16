@@ -8,10 +8,15 @@ redirect_from:
   - /about.html
 ---
 
-I am a machine learning postdoctoral research associate at the University of Manchester in the Alliance Manchester Business School, previously in the department of Computer Science. I am currently working with [Richard Allmendinger](https://personalpages.manchester.ac.uk/staff/richard.allmendinger/default.htm) and [Theo Papamarkou](https://www.theopapamarkou.com/), and in collaboration with [Matt Benatan](https://matt-benatan.squarespace.com/).  My research interests include ensemble methods in machine learning, uncertainty estimation, Bayesian deep learning and recurrent neural networks. 
+I am an MLOps Engineer at [Fuzzy Labs](https://fuzzylabs.ai) in Manchester.
 
-Prior to my current role, I completed a PhD studying the memory and stability of recurrent neural networks (supervised by [Ke Chen](http://www.cs.man.ac.uk/~kechen/) and co-supervised by [Paul Glendinning](https://personalpages.manchester.ac.uk/staff/paul.glendinning/)), interned at IBM working on Bayesian deep learning and completed an MSc looking at the representations learnt by unsupervised models. I subsequently worked under [Gavin Brown](https://profgavinbrown.github.io/), looking at the role of diversity in machine learning ensembles.
-I also have an interest in applications of machine learning to healthcare having participated in last year's PhysioNet challenge on a team lead by [Dave Wong](https://personalpages.manchester.ac.uk/staff/david.wong/).
+Previously, I was a machine learning postdoctoral research associate at the University of Manchester in the Alliance Manchester Business School, and before that in the department of Computer Science. During that time, I worked with [Richard Allmendinger](https://personalpages.manchester.ac.uk/staff/richard.allmendinger/default.htm) and [Theo Papamarkou](https://www.theopapamarkou.com/), and in collaboration with [Matt Benatan](https://matt-benatan.squarespace.com/) on explainable uncertainty,
+and before that I worked with [Gavin Brown](https://profgavinbrown.github.io/), looking at the role of diversity in machine learning ensembles.
+
+Prior to these roles, I completed a PhD studying the memory and stability of recurrent neural networks (supervised by [Ke Chen](http://www.cs.man.ac.uk/~kechen/) and co-supervised by [Paul Glendinning](https://personalpages.manchester.ac.uk/staff/paul.glendinning/)), interned at IBM working on Bayesian deep learning and completed an MSc looking at the representations learnt by unsupervised models. 
+I also have an interest in applications of machine learning to healthcare having participated in 2022's PhysioNet challenge on a team lead by [Dave Wong](https://personalpages.manchester.ac.uk/staff/david.wong/).
+
+My research interests include ensemble methods in machine learning, uncertainty estimation, Bayesian deep learning and recurrent neural networks. 
 
 ## Contact
 
