@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Danny Wood"
 title_separator          : "-"
 name                     : &name "Danny Wood"
-description              : &description "Machine learning researcher at University of Manchester "
+description              : &description "Senior MLOps Engineer at Fuzzy Labs"
 url                      : http//localhost:4000 # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
@@ -50,7 +50,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
-google_site_verification :
+google_site_verification : google4c786e608f950088.html
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
