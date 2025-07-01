@@ -69,6 +69,20 @@ Some resources if you are interested in learning more about the Legendre transfo
 
 _If you have any comments or spot any errors in the above, please feel free to reach out to me on [Twitter](https://twitter.com/EchoStatements)_
 
+## Citation
+
+This post can be cited using the following bibtex entry:
+
+```bibtex
+@misc{woood2025siamese,
+  author = {Wood, Danny},
+  title = {Visualising the Legendre Transform},
+  year = {2023},
+  howpublished = {Blog post},
+  url = {https://echostatements.github.io/posts/2023/02/visualising_the_legendre_transform/}
+}
+```
+
 
 [^1]: This isn't strictly true, the highest line to not cut into the area above the curve may just approach the curve in the limit. For clarity of exposition, we leave the handling of this case to footnotes.
 [^2]: To see why this is needed, consider the case when $m=0$ for the example curve. We can see that the line $y=2$ lies below the curve and the two will meet in the limit. However, the never actually touch; furthermore for any value greater than 2, a horizontal line at that height will end up above the curve somewhere far to the left.
