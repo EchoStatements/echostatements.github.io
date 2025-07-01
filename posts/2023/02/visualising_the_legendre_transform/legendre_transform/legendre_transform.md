@@ -74,7 +74,7 @@ _If you have any comments or spot any errors in the above, please feel free to r
 This post can be cited using the following bibtex entry:
 
 ```bibtex
-@misc{woood2025siamese,
+@misc{woood2023visualising,
   author = {Wood, Danny},
   title = {Visualising the Legendre Transform},
   year = {2023},
