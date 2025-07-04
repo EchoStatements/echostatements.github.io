@@ -11,7 +11,7 @@ title                    : "Danny Wood"
 title_separator          : "-"
 name                     : &name "Danny Wood"
 description              : &description "Senior MLOps Engineer at Fuzzy Labs"
-url                      : http//echostatements.github.io:4000 # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://echostatements.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "EchoStatements/echostatements.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -160,7 +160,6 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
-
 # Markdown Processing
 kramdown:
   input: GFM
@@ -171,7 +170,6 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-
 
 # Collections
 collections:
