@@ -23,4 +23,4 @@ My research interests include ensemble methods in machine learning, uncertainty 
 ## Contact
 
 
-The easiest way to contact me is either via Twitter or LinkedIn, links for both are in the sidebar.
+The easiest way to contact me is either via BlueSky or LinkedIn, links for both are in the sidebar.
