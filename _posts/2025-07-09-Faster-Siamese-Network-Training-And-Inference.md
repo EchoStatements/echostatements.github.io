@@ -156,7 +156,7 @@ prediction to the target using the binary cross-entropy loss, back-propagate thr
 the network and update the weights using an Adam optimser.
 
 <div style="text-align: center;">
-<img src="images/faster_training.png" alt="Faster inference effect on training" width="600" style="display: block; margin: 0 auto;">
+<img src="images/training_time.png" alt="Faster inference effect on training" width="600" style="display: block; margin: 0 auto;">
 </div>
 
 Here, we see a speed-up of 37.5%, suggesting that this optimisation affects not just 
