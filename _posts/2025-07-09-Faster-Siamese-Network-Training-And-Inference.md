@@ -327,9 +327,9 @@ An obvious extension to the training approach would be to apply the same method 
 triplet loss. This could again work by arranging the training batches in matching pairs
 and having each inputs representation successively as a positive example, 
 negative example and anchor, though experiments would have to be done to ensure that 
-this does not affect performance
+this does not affect performance.
 
-_Thanks to [D. Lowl](https://bsky.app/profile/d-lowl.bsky.social) and [Sara Summerton](https://github.com/sara-es) for their feedback on an earlier draft of this post_
+_Thanks to [D. Lowl](https://bsky.app/profile/d-lowl.bsky.social) and [Sara Summerton](https://github.com/sara-es) for their feedback on earlier drafts of this post_
 
 ## Citation
 
