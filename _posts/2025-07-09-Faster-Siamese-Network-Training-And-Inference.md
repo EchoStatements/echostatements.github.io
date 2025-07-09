@@ -9,7 +9,7 @@ tags:
 In this post, I look at a couple of ways you can dramatically speed up 
 training of Siamese neural networks.
 These are two relatively simple tricks that I've not seen anywhere else which,
-when combined, can give a greater than 2x speed-up when training Siamese networks
+when combined, can give a ~2.5x speed-up when training Siamese networks
 on GPU in PyTorch.
 
 ## Siamese Networks, Very Briefly
@@ -222,7 +222,7 @@ for batch_idx, (images_1, images_2) in enumerate(train_loader):
     
     # Collect model outputs
     output1, output2 = model(images_1, images_2)
-    outputs_same = torch.cat((output1, output2), dim=0)
+    outputs_same = torch.cat((output1, output2), dim=1)
 
     # Second examples: roll second image tensor and assume different classes (negative pairs)
     different_class_targets = torch.zeros(len(images_1)).to(device)
@@ -285,7 +285,7 @@ is required to establish exactly what about this alternate training strategy imp
 performance in this case.[^better]
 
 
-# Applying Both Optimisations
+## Applying Both Optimisations
 
 Finally, we look at the effect of using both optimisations at the same time. Training a
 networks using all four combinations of classic/faster training and classic/faster 
@@ -311,7 +311,7 @@ model only, respectively. The equivalence here may be due to the fact that in is
 they serve the same role: to halve the number of subnetwork calls 
 for every example seen by the loss function.
 
-# What's Next?
+## What's Next?
 
 The two optimisations presented here offer significant speedup to Siamese network training, and 
 when combined reduce the training time by significantly more than half.
