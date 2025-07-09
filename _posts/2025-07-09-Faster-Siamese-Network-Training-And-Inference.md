@@ -159,6 +159,10 @@ the network and update the weights using an Adam optimser.
 <img src="images/faster_training.png" alt="Faster inference effect on training" width="600" style="display: block; margin: 0 auto;">
 </div>
 
+Here, we see a speed-up of 37.5%, suggesting that this optimisation affects not just 
+the forward pass through the model but also offers a benefit of similar magnitude
+during the backward pass during training. 
+
 
 ## Optimisation 2: Data Efficient Training
 
