@@ -20,7 +20,7 @@ to determine if they are of the same class.
 They work by having two identical subnetworks, which share the same architecture and weights, processing the
 two inputs to construct two independent feature vectors, which are then compared, either with an explicitly computed distance
 metric (such as Euclidean distance) or by concatenating the two vectors and feeding them into the next stage of the
-network.
+network to compute a non-linear similarity measure.
 
 The following diagram gives the general structure of these networks:
 
@@ -329,7 +329,8 @@ and having each inputs representation successively as a positive example,
 negative example and anchor, though experiments would have to be done to ensure that 
 this does not affect performance.
 
-_Thanks to [D. Lowl](https://bsky.app/profile/d-lowl.bsky.social) and [Sara Summerton](https://github.com/sara-es) for their feedback on earlier drafts of this post_
+_Thanks to [D. Lowl](https://bsky.app/profile/d-lowl.bsky.social), [Sara Summerton](https://github.com/sara-es) 
+and [Matt Squire](https://bsky.app/profile/matt-squire.bsky.social) for their feedback on earlier drafts of this post_
 
 ## Citation
 
