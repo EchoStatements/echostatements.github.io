@@ -202,8 +202,8 @@ can be visualised like so:
 <img src="images/new_dataset_2.png" alt="Data optimization strategy diagram" width="900" style="display: block; margin: 0 auto;">
 </div>
 
-In short, we evaluate all pairs on the positive samples, then roll the _outputs_, 
-not the inputs to create the negatively labelled pairs.
+In short, we evaluate all pairs on the positive samples, then roll the _outputs_
+(not the inputs) to create the negatively labelled pairs.
 
 Given a dataloader which generates pairs such that no two consecutive pairs in a 
 batch are of the same class (including the first pair and last pair), a training 
