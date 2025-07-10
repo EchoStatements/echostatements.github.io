@@ -43,7 +43,7 @@ in your training set, you can start running facial recognition to identify that 
 ## Optimisation 1: Reducing Subnetwork Calls
 
 The first trick for speeding up Siamese neural networks is applicable for both training and inference, and can be summarised succinctly as:
-_batch your inputs together rather than calling the model twice._
+_concatenate your inputs and feed them to subnetwork together rather than calling the model twice._
 
 A typical Siamese network implemented in PyTorch might follow a template such as this:[^imp_note]
 
