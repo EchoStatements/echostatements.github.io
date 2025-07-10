@@ -316,11 +316,11 @@ for every example seen by the loss function.
 The two optimisations presented here offer significant speedup to Siamese network training, and 
 when combined reduce the training time to just 40% of the original training time.
 Though the faster training method modifies the training algorithm, it does so in a way
-where the effects on performance---whether positive or negative---appear to be negligible.
+where the effects on performance range from negligible to even being positive in some cases.
 
 Further optimisations may be possible in the training algorithm, if multiple examples 
 pairs from the same class are present in a batch, then the representations could be 
-used more than twice, with the difficulty coming in ensure that the matching vs 
+used more than twice, but with some potential difficulties in ensuring that the matching vs 
 non-matching pairs appear with similar frequencies.
 
 An obvious extension to the training approach would be to apply the same method to the 
