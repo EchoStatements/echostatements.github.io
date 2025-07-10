@@ -314,7 +314,7 @@ for every example seen by the loss function.
 ## What's Next?
 
 The two optimisations presented here offer significant speedup to Siamese network training, and 
-when combined reduce the training time by significantly more than half.
+when combined reduce the training time to just 40% of the original training time.
 Though the faster training method modifies the training algorithm, it does so in a way
 where the effects on performance---whether positive or negative---appear to be negligible.
 
