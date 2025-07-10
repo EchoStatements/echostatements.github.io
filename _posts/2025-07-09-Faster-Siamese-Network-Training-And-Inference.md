@@ -151,9 +151,9 @@ using the faster method.
 </div>
 
 To measure the effect of using this new method on training, we perform a similar 
-experiment but this time whilst iterating through the data, we also compare the model's
+experiment but this time simulate training. Whilst iterating through the data, we compare the model's
 prediction to the target using the binary cross-entropy loss, back-propagate through
-the network and update the weights using an Adam optimser.
+the network and update the weights using an Adam optimiser.
 
 <div style="text-align: center;">
 <img src="images/training_time.png" alt="Faster inference effect on training" width="600" style="display: block; margin: 0 auto;">
