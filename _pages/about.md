@@ -8,8 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Senior MLOps Engineer at [Fuzzy Labs](https://fuzzylabs.ai) in Manchester, 
-with a particular focus on R&D. I specialise in Large Language Models, AI security and
+I am Lead AI Research Scientist at [Fuzzy Labs](https://fuzzylabs.ai) in Manchester. I specialise in Large Language Models, AI security and
 numerical computing.
 
 Previously, I was a machine learning postdoctoral research associate at the University of Manchester in the Alliance Manchester Business School, and before that in the department of Computer Science. During that time, I worked with [Richard Allmendinger](https://personalpages.manchester.ac.uk/staff/richard.allmendinger/default.htm) and [Theo Papamarkou](https://www.theopapamarkou.com/), and in collaboration with [Matt Benatan](https://matt-benatan.squarespace.com/) on explainable uncertainty,
