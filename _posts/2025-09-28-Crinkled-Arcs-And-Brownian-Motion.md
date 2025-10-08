@@ -3,6 +3,7 @@ title: 'Crinkled Arcs And Brownian Motion'
 permalink: /posts/2025/10/crinkled-arcs-and-brownian-motion
 tags:
 - maths
+- physics
 - Brownian motion
 ---
 
@@ -146,11 +147,13 @@ The last thing we need to check is continuity of $$f$$, which we get from the fa
 any $$a$$ and $$b$$, as $$a->b$$ the norm of the difference of the functions tends to zero. We use
 the same property of indicator functions we used in computing chord inner products to find:
 
-$$\lvert\lvert f(b)-f(a)\rvert\rvert^2 = \int\lvert f(b)(s) - f(a)(s)\rvert^2 ds =  \int^b_a = b-a$$
+$$\lvert\lvert f(b)-f(a)\rvert\rvert^2 = \int_{i=0}^1 \lvert f(b)(s) - f(a)(s)\rvert^2 ds =  
+\int^b_a \,ds= 
+b-a$$
 
 from which the continuity of $$f$$ becomes apparent.
 
-## Building A Basis: Attempt 1
+## Building A Fourier Basis
 
 We now have a solution, but on the surface it looks very much unlike the solution that Wikipedia 
 give. 
@@ -159,7 +162,8 @@ vector space-y. It would be nice if we could give it some coordinates. So let's 
 Fourier basis and to see what the components look like.
 
 Recall that absolutely integrable period function with period 2 and only finitely many maxima, 
-minima and discontinuities can be written as 
+minima and discontinuities can be written as:
+
 $$\phi(x) = a_0 + \sum_{n=1}^\infty a_n \cos nx + \sum_{n=1}^\infty b_n \sin nx,$$
 
 for some $$a_0, a_1, \ldots$$ and some $$b_1, b_2, \ldots$$. However, since our functions are in 
@@ -248,7 +252,7 @@ $$f(t)= e_0(t) + \sum_{n=1}^\infty \frac{2}{n \pi} \sin(n \pi t) e_n(t).$$
 This interactive visualization demonstrates how the Fourier series can approximate an indicator function using the cosine basis. You can adjust the c value to change the cutoff point of the indicator function and the number of components to see how the approximation improves with more terms.
 
 
-## Building A Basis Attempt 2: Working Backwards From the Solution
+## Building the Standard Solution
 
 In the previous section, we wrote our crinkled arc in terms of a series based on the Fourier 
 expansion of functions. In this section we are going to use what we know the coefficients look
@@ -263,7 +267,8 @@ a very good reason why this basis is a natural choice, its derivation is non-tri
 as a potential topic for a future post.
 
 I wasn't able to find the form of these basis vectors anywhere online, though looking at the 
-coefficients 
+coefficients, they can be guessed at pretty easily, and then we can verify that the guess is 
+correct. 
 In order to get the standard solution we need to make a choice for the basis functions that 
 seems arbitrary. In particular, we choose the basis functions to be $$e_n$$ of the form 
 $$e_n(x) = \sqrt{2} \cos \left( (k - \frac{1}{2}) \pi x \right)$$. 
@@ -371,15 +376,139 @@ crinkled arc using interval functions. For our crinkled arc $$f$$:
 These connections are concrete enough that we should expect to be able to construct an isomorphism
 between the two.
 
-The crinkled arc describes the covariance
+Let's start off with properties 3 and 4 of Brownian motion. We want that for $$a,b,c,d$$ defined
+in the usual way that $$W_b-Wa \sim \mathcal{N}(0, b-a)$$ and $$W_b-W_a \sim \mathcal{N}(0, d-c)$$
+with the two normal distributions being independent. We can notice that for our crinkled arc $$f$$,
+the inner product and norm behave  in the same way that we would like the covariance and 
+variance to behave. 
 
-And in fact, we can use the fact that the crinkled arc to take our Brownian motion, which is defined
-as uncountably many correlated random variables and represent it as the sum of only countably many
-independent random variables.
+So we want $$cov(W_a, W_b)=\langle f(a), f(b)\rangle$$ and $$cov(W_b-W_a, W_d-W_c) = \langle f(b)
+-f(a), f(d)-f(c)\rangle$$. It sure looks like we want $$W_t$$ to live in a space with an inner 
+product structure! 
 
-[BROWNIAN MOTION DEMO]
+Since $$W_t$$ are all real-valued random variables, we can do all the operations on them with 
+regard to adding them together and scaling them to form a vector space, and we can define the 
+inner product to be the covariance (after proving that covariance fits all the necessary 
+criteria for an inner product). But now, we know that if we want the covariance of $$W_t$$'s 
+trajectory to have the properties we want, then $$W_t$$ has to follow a crinkled arc. 
+
+More than that, we know that for the crinkled arc, there is a basis such that 
+
+$$W_t = \sqrt{2} \sum_{n=1}^\infty X_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi},$$
+
+Now what are the basis vectors? They're independent normal distributions with zero mean and unit
+variance! We get that they're normally distributed because they are a basis for the space spanned by
+$$W_t$$, which consists solely of zero-mean normally distributed variables (consider the third 
+property 
+and that $$W_t = W_t-W_0$$ by the first property). And by the criterion that the basis form an 
+orthonormal set guarantee unit variance (by normalisation) and independence (by orthogonality).
+
+This derivation is the opposite way round from what you will typically find in the literature. 
+In fact, the general solution for the form of the crinkled arc was derived by first identifying 
+the crinkled arcs are Brownian motion and immediately porting over the known form of the result.
+
+
+<div class="container">
+    <h3>Interactive Visualization of Brownian Motion</h3>
+    <div class="description">
+        Visualization of Brownian motion on [0,1] using different simulation methods
+    </div>
+
+    <div class="plot-container">
+        <canvas id="brownian-canvas1" width="800" height="300"></canvas>
+    </div>
+
+    <div class="plot-container">
+        <canvas id="brownian-canvas2" width="800" height="300"></canvas>
+    </div>
+
+    <div class="plot-container">
+        <canvas id="brownian-canvas3" width="800" height="300"></canvas>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <h3>Random Walk Simulation</h3>
+            <h4>Granularity (number of steps)</h4>
+            <div class="slider-container">
+                <input type="range" id="granularity-slider" min="10" max="1000" step="10" value="100">
+                <span class="value-display" id="granularity-value">100</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>Fourier Series Simulation</h3>
+            <h4>Number of terms</h4>
+            <div class="slider-container">
+                <input type="range" id="terms-slider" min="1" max="1000" step="1" value="10">
+                <span class="value-display" id="terms-value">10</span>
+            </div>
+        </div>
+
+        <div class="toggles" style="margin-top: 20px; margin-bottom: 20px;">
+            <button id="resample-btn">Re-sample All Paths</button>
+        </div>
+    </div>
+
+    <div class="description" style="margin-top: 20px;">
+        <p>
+            This visualization demonstrates two methods for simulating Brownian motion on the interval [0,1].
+        </p>
+        <p>
+            The first plot shows Brownian motion simulated as the limit of a random walk. As the granularity increases, 
+            the simulation approaches true Brownian motion. Three sample paths are shown to illustrate the random nature.
+        </p>
+        <p>
+            The second plot shows Brownian motion simulated using the Fourier series representation:
+            B(t) = X₀·t + ∑ₙ₌₂ Xₙ·√2/(nπ)·sin(nπt)
+            where X₀, X₁, X₂, ... are independent standard normal random variables.
+        </p>
+        <p>
+            The third plot shows Brownian motion simulated using the half-integer sine wave method:
+            B(t) = ∑ₙ Xₙ·√2·sin((n-1/2)πt)/((n-1/2)π)
+            where X₁, X₂, ... are independent standard normal random variables.
+        </p>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/styles.css">
+<script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/fourier_utils.js"></script>
+<script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/brownian_motion.js"></script>
 
 We know that for orthogonal objects, 
 
+## Conclusion
+
+This post has described crinkled arcs in three ways: a function describing the curve made by 
+continuously varying a parameter in an interval function, using a set of basis 
+trigonometric basis functions and as the trajectory of Brownian motion through a Hilbert space 
+of normal distribution random variables.
+
+The original motivation for this blog post was to clarify for myself the relationship between these 
+three descriptions (in his original work, Johnson jumped immediately between the third and second
+using the Kosambi–Karhunen–Loève theorem).
+
+In his paper, Johnson also notes that the solution given is the _only_ crinkled arc, up to certain
+permitted transformations.
+
 [^ footnote]
 This set of basis vectors is 
+
+## References
+
+Halmos, P. R. (2012). A Hilbert space problem book (Vol. 19). Springer Science & Business Media.
+
+Johnson, G. G. (1970, June). A crinkled arc. In Proc. Amer. Math. Soc (Vol. 25, pp. 375-376).
+
+Vitale, Richard A. "Representation of a crinkled arc." Proceedings of the American Mathematical Society 52.1 (1975): 303-304.
+
+## Cite This Post
+```bibtex
+@misc{woood2025crinkled,
+  author = {Wood, Danny},
+  title = {Crinkled Arcs and Brownian Motion},
+  year = {2025},
+  howpublished = {Blog post},
+  url = {https://echostatements.github.io/posts/2025/10/crinkled_arcs_and_brownian_motion/}
+}
+```
