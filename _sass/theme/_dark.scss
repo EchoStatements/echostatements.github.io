@@ -42,6 +42,8 @@ html[data-theme="dark"] {
     --global-dark-border-color          : #{$background-light};
     --global-code-background-color      : #fafafa;
     --global-code-text-color            : #{$darker-gray};
+    --global-background-color           : #333333;
+    --global-card-background-color      : #3a3a3a;
     --global-fig-caption-color          : #{$light-gray};
     --global-link-color                 : #{$link};
     --global-link-color-hover           : #{$link-dark};
