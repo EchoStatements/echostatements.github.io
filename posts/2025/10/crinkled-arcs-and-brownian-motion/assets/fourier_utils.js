@@ -221,11 +221,11 @@ const FourierUtils = {
     return result;
     },
 
-    // Function to calculate the half-integer sine wave approximation
-    calculateHalfIntegerSineApproximation: function(x, c, components) {
+    // Function to calculate the half-integer cosine wave approximation
+    calculateHalfIntegerCosineApproximation: function(x, c, components) {
         let result = 0;
 
-        // Using the formula: sqrt(2) sin((k-0.5) pi x) with coefficients sqrt(2) * sin((k-0.5) pi c) / ((k-0.5)*pi)
+        // Using the formula: sqrt(2) cos((k-0.5) pi x) with coefficients sqrt(2) * sin((k-0.5) pi c) / ((k-0.5)*pi)
         for (let k = 1; k <= components; k++) {
             const term = (k - 0.5) * Math.PI;
             result += (Math.sqrt(2) / term) * Math.sin(term * c) * Math.sqrt(2) * Math.cos(term * x);

@@ -2,33 +2,38 @@
 title: 'Crinkled Arcs And Brownian Motion'
 permalink: /posts/2025/10/crinkled-arcs-and-brownian-motion
 header:
-  teaser: /posts/2025/07/faster-siamese-network-training-and-inference/images/siamese%20diagrams.png
+  teaser: /posts/2025/10/crinkled-arcs-and-brownian-motion/brownian.png
+published:
+  false
 tags:
-- maths
-- physics
-- Brownian motion
+  - maths
+  - physics
+  - Brownian motion
 ---
 
-A crinkled arc is a continuous curve with properties that make it appear as if it is making 
-right-angle turns at every point along its trajectory. More than this, if you draw a straight line 
+A crinkled arc is a continuous curve that appears as if it is making 
+right-angle turns at every point along its trajectory. Additionally, if you draw a straight line 
 between two recent points and compare that line to a line drawn between any two points in its more
 distance past, you will find that these two lines are also perpendicular.
 
 On first glance, this feels really weird, and it may not be clear that such a curve should  
-be possible to construct, even if we allow ourselves an infinite dimensional space to draw it 
-in. However, it turns out that not only do such curves exist, there are a more 
-intuitive ways of thinking of them, once you choose a suitable space for those curves to live in 
-and think carefully about their construction. In this post, I describe two such ways that 
+exist, even if we allow ourselves an infinite dimensional space to draw it 
+in. However, it turns out that not only do such curves exist, there are ways of constructing 
+them such that the fact that they should have these properties begins to feel obvious.
+In this post, I describe two such ways that 
 crinkled arcs have been constructed, the first by defining it as a path through a space of 
 functions 
 and the second drawing a connection to Brownian motion, the random movement of particles suspended in fluid.
 
 ## Crinkled Arcs
 
-Crinkled arcs are continuous functions from the unit interval to a Hilbert space such that for 
-any two non-overlapping intervals $$[a,b]$$ and $$[c,d]$$ in the unit interval, the chords $$f(b)
+We begin by giving a more formal definition of what a crinkled arc is.
+
+A crinkled arc is a continuous function $$f$$ from the unit interval to a Hilbert space such that 
+for 
+any two non-overlapping intervals $$[a,b] \subset [0,1]$$ and $$[c,d] \subset [0,1]$$, the chords $$f(b)
 -f(a)$$ and $$f(d)-f(c)$$ are orthogonal in the Hilbert space. Their name is derived from this 
-property, as it is observed that "seem to be making a sudden right angle turn at each point"
+property, as it is observed that ["seem to be making a sudden right angle turn at each point"](https://archive.org/details/hilbertspaceprob0019halm/page/4/mode/2up)
 
 Let $$X$$ be a Hilbert space equipped with an inner product $$\langle \cdot, \cdot \rangle$$.
 We say that $$f: [0,1] \to X$$ is a crinkled arc if $$f$$ is a continuous function such that for 
@@ -36,39 +41,45 @@ all $$ 0 \leq a < b \leq c < d \leq
 1$$,
 we have $$\langle f(b)-f(a), f(d)-f(c)\rangle = 0$$. 
 
-The above definitions are largely paraphrased from Wikipedia, and after this introduction, 
-Wikipedia announces that crinkled arcs (up to certain normalisation procedures) are of the form
+The above definitions are largely paraphrased from [Wikipedia](https://en.wikipedia.org/wiki/Crinkled_arc). 
+After this introduction, the article asserts that all crinkled arcs (up to certain 
+normalisation procedures) are of the form
 
-$$f(t) = \sqrt{2} \sum_{n=1}^\infty x_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi},$$
+$$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) 
+\pi},$$
 
-Where $${x_n}$$ are an orthonormal set defining a subspace of $$X$$. While this is true (as we 
-will prove), it hides the fact that we can construct crinkled arcs in a more intuitive way. 
-
+Where $${\phi_n}$$ are an orthonormal set defining a subspace of $$X$$. While this is indeed a 
+crinkled arc (as we are about to prove), it hides the fact that we can construct crinkled arcs 
+in a more intuitive way. 
 
 ## Construction of a solution
 
-In Halmos' book [[NAME]], he presents an exercise defining the crinkled arc (though not by name),
-and challenging the reader to come up with an example of such an arc. This is the solution that 
-he presents, declaring that everyone set this problem find the same solution.
+In [A Hilbert Space Problem Book](https://archive.org/details/hilbertspaceprob0019halm/page/370/mode/2up), 
+Halmos presents an exercise
+and challenging the reader to come up with an example of a curve satisfying the properties of the 
+crinkled arc. What follows is the solution that 
+he presents. Interestingly, he also declares that everyone set this problem find the same 
+solution.
 
 Consider the Hilbert space $$L^2(0,1)$$, that is, the space of all square integrable 
 functions over the interval (0,1). 
-For this space, the inner product is defined using
-multiplication of the two functions, so two functions $$\psi:[0,1]\to\mathbb{R}$$ and 
-$$\phi:[0,1]\to\mathbb{R}$$ are orthogonal if and only if they satisfy
-$$\int_0^1 \psi(x) \phi(x) \,dx=0$$. Here, we use Greek letters $$\phi$$ and $$\psi$$ to denote 
+For this space, the inner product is defined using the integral of the product
+of the two functions, so functions $$\psi:[0,1]\to\mathbb{R}$$ and 
+$$\varphi:[0,1]\to\mathbb{R}$$ are orthogonal if and only if they satisfy
+$$\int_0^1 \psi(x) \varphi(x) \,dx=0$$. Here, we use Greek letters $$\varphi$$ and $$\psi$$ to denote 
 functions from $$(0,1)$$ to $$\mathbb{R}$$ so as to not confuse them with $$f$$, 
-which maps from the interval $$(0,1)$$ to _functions_ with that domain and range. 
+which maps from the interval $$(0,1)$$ to real-valued _functions_.
 
-More generally, our Hilbert spaces dot product is defined by this integral $$\langle \psi,\phi 
+More generally, our Hilbert spaces dot product is defined by this integral $$\langle \psi,\varphi 
 \rangle 
-= \int^1_0 \psi(x)\phi(x)\,dx $$. 
+= \int^1_0 \psi(x)\varphi(x)\,dx $$. 
 
 Remember that for crinkled arcs, we want 
 $$ \langle f(b) - f(a), f(d) - f(c) \rangle = 0$$ for all 
 $$0 \leq a < b \leq c < d$$. This gives us an idea for how to construct a solution: if the function 
 $$f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$f(d)-f(c)$$ is zero outside of the 
-interval $$[c,d]$$. 
+interval $$[c,d]$$, then their inner product will be zero, since the product of the two 
+functions will be zero everwhere. 
 
 The easiest way to do this is with indicator functions. Defining $$𝟙_{[0,t]}(x) = \begin{cases}1 
 \textnormal{ if } x \leq t \\ 0 \textnormal{ if } x > t \end
@@ -79,6 +90,10 @@ The function given by the difference of two indicator functions with $$t=a$$ and
 $$b>a$$ is 
 non-zero only for values between $$a$$ and $$b$$, and the product of $$f(b)-f(a)$$ and $$f(d)-f(c)$$
 is a function with non-zero regions if and only if the intervals $$(a,b)$$ and $$(c,d)$$ overlap.
+
+This is demonstrated with the visualisation below. You can set the sliders to see how different 
+values of $$a,b,c$$ and $$d$$ affect the inner product of the function differences (visualised 
+as the pink area in the bottom plot).
 
 <div class="container">
     <h3>Interactive Visualization of Indicator Functions</h3>
@@ -145,50 +160,51 @@ is a function with non-zero regions if and only if the intervals $$(a,b)$$ and $
 <link rel="stylesheet" href="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/styles.css">
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/indicator_functions.js"></script>
 
-This interactive visualization demonstrates how indicator functions work and how their differences behave. You can adjust the parameters using the sliders to see how the functions change.
-
-
-The last thing we need to check is continuity of $$f$$, which we get from the fact that as for 
+One last thing we need to check is the continuity of $$f$$, which we get from the fact that as for
 any $$a$$ and $$b$$, as $$a\rightarrow b$$ the norm of the difference of the functions tends to 
 zero. We use
 the same property of indicator functions we used in computing chord inner products to find:
 
-$$\lvert\lvert f(b)-f(a)\rvert\rvert^2 = \int_{0}^1 \lvert f(b)(s) - f(a)(s)\rvert^2 ds =  
-\int^b_a \,ds= 
-b-a$$
+$$\begin{aligned}\lvert\lvert f(b)-f(a)\rvert\rvert^2 &= \langle f(b)-f(a), f(b)-f(a) \rangle\\
+&= \int_{0}^1 \lvert f(b)(s)- f(a)(s)\rvert^2 ds \\
+&=  \int^b_a \,ds \\
+&= b-a\end{aligned}$$
 
 from which the continuity of $$f$$ becomes apparent.
 
 ## Building A Fourier Basis
 
-We now have a solution, but on the surface it looks very much unlike the solution that Wikipedia 
-give. 
+We now have a solution, but on the surface it looks very much unlike the solution that we were 
+expecting. 
 We have a function that satisfies the _crinkled arc_ definition but that definition isn't very 
-vector space-y. It would be nice if we could give it some coordinates. So let's try using the 
-Fourier basis and to see what the components look like.
+vector space-y; it feels like we've been treating $$L^2(0,1)$$ more as a set of functions rather 
+than a proper vector space.
+To fix this, it would be nice if we could define a basis and give the curve some coordinates.
+So let's try using the Fourier basis and to see what the components look like.
 
 Recall that absolutely integrable period function with period 2 and only finitely many maxima, 
 minima and discontinuities can be written as:
 
-$$\phi(x) = a_0 + \sum_{n=1}^\infty a_n \cos nx + \sum_{n=1}^\infty b_n \sin nx,$$
+$$\varphi(x) = a_0 + \sum_{n=1}^\infty a_n \cos nx + \sum_{n=1}^\infty b_n \sin nx,$$
 
-for some $$a_0, a_1, \ldots$$ and some $$b_1, b_2, \ldots$$. However, since our functions are in 
-$$L^2(0,1)$$ rather than $$L^2(-1, 1)$$, we can make life easier for ourselves by imagining that 
+for some $$a_0, a_1, \ldots \in \mathbb{R}$$ and some $$b_1, b_2, \ldots\in\mathbb{R}$$. However, 
+since our functions are in $$L^2(0,1)$$ rather than $$L^2(-1, 1)$$, we can make life easier for ourselves by imagining that 
 it is extended to be an even function (recall that for an even function, $$f(x)=f(-x)$$ and that 
 all $$b_n$$ can be shown to be zero).
 
-Given this choice of basis vectors, we expect to be able to write for any $$t$$, write the function
+Given this choice of basis vectors, we expect for any $$t$$, write the function
 $$f(t)$$ in terms of these basis functions.
-In this case our un-normalised basis are $$e_0(x)=1$$, the constant function and the set of 
-cosine functions of the form $$\cos(n \pi x)$$. The later need need normalising, so our non-constant
-basis functions are of the form $$e_n(x)= \sqrt{2} \cos(n \pi x)$$.
+In this case our un-normalised basis functions are $$\phi_0(x)=1$$, the constant function and the 
+set of 
+cosine functions of the form $$\cos(n \pi x)$$. The later need normalising, so our non-constant
+basis functions are of the form $$\phi_n(x)= \sqrt{2} \cos(n \pi x)$$.
 
-With this, we have that $$f (t) = \sum_{n=1}^\infty a_n(t) e_n$$ 
+With this, we have that $$f (t) = \sum_{n=1}^\infty a_n(t) \phi_n$$ 
 for some sequence of $$a_n \in \mathbb{R}$$. We find these coefficients using our inner product
-to find the projection of $$f(t)$$ onto $$e_n$$ for each $$e_n$$, so for $$n>0$$
+to find the projection of $$f(t)$$ onto $$\phi_n$$ for each $$\phi_n$$, so for $$n>0$$
 
-$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) e_n(x) \, dx\\
-&= \int_0^t e_n(x) \\
+$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) \phi_n(x) \, dx\\
+&= \int_0^t \phi_n(x) \\
 &= \int_0^t \sqrt 2 \cos (n \pi x) \,dx \\
 &= -\frac{\sqrt 2}{n \pi} \sin (n \pi x) \end{aligned}$$
 
@@ -203,7 +219,10 @@ $$f(t) : x \mapsto t + \sum_{n=1}^\infty \frac{2}{n \pi} \sin (n \pi t) \cos(n \
 
 We can also write this to as
 
-$$f(t)= e_0(t) + \sum_{n=1}^\infty \frac{2}{n \pi} \sin(n \pi t) e_n(t).$$
+$$f(t)= \phi_0(t) + \sum_{n=1}^\infty \frac{2}{n \pi} \sin(n \pi t) \phi_n(t).$$
+
+This solution can be verified using the visualisation below, showing that even with finite 
+approximations of the infinite sum, we get a good approximation of the indicator function.
 
 <div class="container">
     <h3>Interactive Visualization of Fourier Series Approximation</h3>
@@ -255,15 +274,13 @@ $$f(t)= e_0(t) + \sum_{n=1}^\infty \frac{2}{n \pi} \sin(n \pi t) e_n(t).$$
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/fourier_utils.js"></script>
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/fourier_series_cosine.js"></script>
 
-This interactive visualization demonstrates how the Fourier series can approximate an indicator function using the cosine basis. You can adjust the c value to change the cutoff point of the indicator function and the number of components to see how the approximation improves with more terms.
 
 
 ## Building the Standard Solution
 
 In the previous section, we wrote our crinkled arc in terms of a series based on the Fourier 
 expansion of functions. In this section we are going to use what we know the coefficients look
-like and what the coefficients for the standard solution look like to guess at a set of basis
-functions which get us to the standard solution.
+for the standard solution to guess at a set of basis functions. 
 
 This is unsatisfying for a couple of reasons. Firstly, we need to worry about whether 
 this basis is even a complete basis for $$L^2(0,1)$$ or is otherwise powerful enough to fully 
@@ -276,17 +293,17 @@ I wasn't able to find the form of these basis vectors anywhere online, though lo
 coefficients, they can be guessed at pretty easily, and then we can verify that the guess is 
 correct. 
 In order to get the standard solution we need to make a choice for the basis functions that 
-seems arbitrary. In particular, we choose the basis functions to be $$e_n$$ of the form 
-$$e_n(x) = \sqrt{2} \cos \left( (k - \frac{1}{2}) \pi x \right)$$. 
+seems arbitrary. In particular, we choose the basis functions to be $$\phi_n$$ of the form 
+$$\phi_n(x) = \sqrt{2} \cos \left( (k - \frac{1}{2}) \pi x \right)$$. 
 
 With this change, we can once again calculate the coeffecients in the same way:
 
-$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) e_n(x) \, dx\\
-&= \int_0^t e_n(x) \\
+$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) \phi_n(x) \, dx\\
+&= \int_0^t \phi_n(x) \\
 &= \int_0^t \sqrt 2 \cos ( (n - \frac{1}{2})\pi x) \,dx \\
 &= -\frac{\sqrt 2}{ (n - \frac{1}{2})\pi } \sin ( (n - \frac{1}{2})\pi x) \end{aligned}$$
 
-Since this time there is no $$e_0$$ coefficient, we get the solution:
+Since this time there is no $$\phi_0$$ coefficient, we get the solution:
 
 $$f(t) = \sqrt{2} \sum_{n=1}^\infty x_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi},$$
 
@@ -364,7 +381,8 @@ representation of Brownian motion.
 
 Mathematically, Brownian motion is a stochastic process: a set of random variables 
 
-$$\{W_t\}_{t\in\mathbb(0,1)}$$ indexed by $$t$$ and defined by the following four properties:
+$$\{W_t\}_{t\in\mathbb(0,1)}$$ indexed by real-valued $$t$$ and defined by the following four 
+properties:
 
 1. Almost surely, $$W_0 = 0$$
 2. $$W_t$$ is almost surely continuous in $$t$$
@@ -383,19 +401,24 @@ These connections are concrete enough that we should expect to be able to constr
 between the two.
 
 Let's start off with properties 3 and 4 of Brownian motion. We want that for $$a,b,c,d$$ defined
-in the usual way that $$W_b-Wa \sim \mathcal{N}(0, b-a)$$ and $$W_b-W_a \sim \mathcal{N}(0, d-c)$$
-with the two normal distributions being independent. We can notice that for our crinkled arc $$f$$,
+in the usual way that $$W_b-W_a \sim \mathcal{N}(0, b-a)$$ and $$W_b-W_a \sim \mathcal{N}(0, d-c)$$
+with the two normal distributions being independent. 
+
+We can notice that for our crinkled arc $$f$$,
 the inner product and norm behave  in the same way that we would like the covariance and 
 variance to behave. 
-
-So we want $$cov(W_a, W_b)=\langle f(a), f(b)\rangle$$ and $$cov(W_b-W_a, W_d-W_c) = \langle f(b)
+More precisely, we want $$\text{cov}(W_a, W_b)=\langle f(a), f(b)\rangle$$ and $$\text{cov}
+(W_b-W_a, 
+W_d-W_c)$$ 
+$$= 
+\langle f(b)
 -f(a), f(d)-f(c)\rangle$$. It sure looks like we want $$W_t$$ to live in a space with an inner 
 product structure! 
 
 Since $$W_t$$ are all real-valued random variables, we can do all the operations on them with 
 regard to adding them together and scaling them to form a vector space, and we can define the 
 inner product to be the covariance (after proving that covariance fits all the necessary 
-criteria for an inner product). But now, we know that if we want the covariance of $$W_t$$'s 
+criteria for an inner product). But, now we know that if we want the covariance of $$W_t$$'s 
 trajectory to have the properties we want, then $$W_t$$ has to follow a crinkled arc. 
 
 More than that, we know that for the crinkled arc, there is a basis such that 
@@ -481,8 +504,6 @@ the crinkled arcs are Brownian motion and immediately porting over the known for
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/fourier_utils.js"></script>
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/brownian_motion.js"></script>
 
-We know that for orthogonal objects, 
-
 ## Conclusion
 
 This post has described crinkled arcs in three ways: a function describing the curve made by 
@@ -492,17 +513,14 @@ of normal distribution random variables.
 
 The original motivation for this blog post was to clarify for myself the relationship between these 
 three descriptions (in his original work, Johnson jumped immediately between the third and second
-using the Kosambi–Karhunen–Loève theorem).
-
-In his paper, Johnson also notes that the solution given is the _only_ crinkled arc, up to certain
-permitted transformations.
-
-[^ footnote]
-This set of basis vectors is 
+using the Kosambi–Karhunen–Loève theorem). I was somewhat surprised to find the definition of the 
+basis functions for the crinkled arc in $$L^2(0,1)$$ did not appear in any sources that I found, 
+though I was also surprised by how few sources I could find.
 
 ## References
 
-Halmos, P. R. (2012). A Hilbert space problem book (Vol. 19). Springer Science & Business Media.
+Halmos, P. R. (2012). A Hilbert space problem book (Vol. 19). Springer Science & Business Media. 
+(Problem 4)
 
 Johnson, G. G. (1970, June). A crinkled arc. In Proc. Amer. Math. Soc (Vol. 25, pp. 375-376).
 

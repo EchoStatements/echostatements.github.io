@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return canvas.height - padding - ((y + 1.2) / 2.4) * plotHeight;
     }
 
-    // Function to calculate the half-integer sine wave Fourier series
-    function calculateHalfIntegerSineSeries(t, components) {
+    // Function to calculate the half-integer cosine wave Fourier series
+    function calculateHalfIntegerCosineSeries(t, components) {
         let result = 0;
 
         // Using the formula from the text:
@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return result;
     }
 
-    // Function to draw the half-integer sine wave Fourier series
-    function drawHalfIntegerSineSeries(canvas, ctx, plotWidth, plotHeight, components, color) {
+    // Function to draw the half-integer cosine wave Fourier series
+    function drawHalfIntegerCosineSeries(canvas, ctx, plotWidth, plotHeight, components, color) {
         ctx.strokeStyle = color;
         ctx.lineWidth = 2;
         ctx.globalAlpha = 1;
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const numPoints = 500;
         for (let i = 0; i <= numPoints; i++) {
             const t = i / numPoints;
-            const y = calculateHalfIntegerSineSeries(t, components);
+            const y = calculateHalfIntegerCosineSeries(t, components);
 
             if (i === 0) {
                 ctx.moveTo(toCanvasX(canvas, plotWidth, t), toCanvasY(canvas, plotHeight, y));
@@ -178,32 +178,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function drawBasisFunctions(canvas, ctx, plotWidth, plotHeight, components) {
         // Draw each basis function with a different color and lower opacity
         const colors = ['#4CAF50', '#2196F3', '#9C27B0', '#FF9800', '#795548'];
-        
+
         for (let n = 1; n <= Math.min(components, 5); n++) {
             const color = colors[(n-1) % colors.length];
             ctx.strokeStyle = color;
             ctx.lineWidth = 1;
             ctx.globalAlpha = 0.4;
-            
+
             ctx.beginPath();
-            
+
             const numPoints = 500;
             for (let i = 0; i <= numPoints; i++) {
                 const t = i / numPoints;
                 // Calculate just this basis function
                 const term = (n - 0.5) * Math.PI;
                 const y = Math.sqrt(2) * Math.sin(term * t) / term;
-                
+
                 if (i === 0) {
                     ctx.moveTo(toCanvasX(canvas, plotWidth, t), toCanvasY(canvas, plotHeight, y));
                 } else {
                     ctx.lineTo(toCanvasX(canvas, plotWidth, t), toCanvasY(canvas, plotHeight, y));
                 }
             }
-            
+
             ctx.stroke();
         }
-        
+
         // Reset opacity
         ctx.globalAlpha = 1;
     }
@@ -218,10 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
         ctx.strokeStyle = '#ddd';
         ctx.lineWidth = 1;
-        
+
         // Calculate height based on number of items
         const legendHeight = 60 + Math.min(components, 5) * lineHeight;
-        
+
         ctx.fillRect(legendX - 10, legendY - 10, 190, legendHeight);
         ctx.strokeRect(legendX - 10, legendY - 10, 190, legendHeight);
 
@@ -240,16 +240,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Text for series
         ctx.fillStyle = '#333';
-        ctx.fillText('Half-Integer Sine Series', legendX + 35, legendY);
-        
+        ctx.fillText('Half-Integer Cosine Series', legendX + 35, legendY);
+
         // Coefficients used
         ctx.fillText('Coefficients used:', legendX, legendY + lineHeight * 1.5);
-        
+
         // List the first few coefficients
         const colors = ['#4CAF50', '#2196F3', '#9C27B0', '#FF9800', '#795548'];
         for (let n = 1; n <= Math.min(components, 5); n++) {
             const color = colors[(n-1) % colors.length];
-            
+
             // Draw line for basis function
             ctx.globalAlpha = 0.4;
             ctx.strokeStyle = color;
@@ -258,13 +258,13 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.moveTo(legendX, legendY + lineHeight * (1.5 + n));
             ctx.lineTo(legendX + 25, legendY + lineHeight * (1.5 + n));
             ctx.stroke();
-            
+
             // Show coefficient value
             ctx.globalAlpha = 1;
             ctx.fillStyle = '#333';
             ctx.fillText(`x${n} = ${coefficients[n-1].toFixed(2)}`, legendX + 35, legendY + lineHeight * (1.5 + n));
         }
-        
+
         // If there are more coefficients than we're showing
         if (components > 5) {
             ctx.fillText(`... (${components-5} more)`, legendX + 35, legendY + lineHeight * (1.5 + 6));
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const components = parseInt(componentsSlider.value);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawTitle(canvas, ctx, 'Half-Integer Sine Wave Fourier Series');
+        drawTitle(canvas, ctx, 'Half-Integer Cosine Wave Fourier Series');
         drawAxes(canvas, ctx, plotWidth, plotHeight);
 
         // Draw basis functions if checkbox is checked
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Draw the Fourier series
-        drawHalfIntegerSineSeries(canvas, ctx, plotWidth, plotHeight, components, '#E91E63');
+        drawHalfIntegerCosineSeries(canvas, ctx, plotWidth, plotHeight, components, '#E91E63');
 
         // Draw the legend
         drawLegend(canvas, ctx, components);

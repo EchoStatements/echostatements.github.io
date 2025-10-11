@@ -44,16 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
             (x) => utils.calculateFourierApproximation(x, c, components), 
             '#E91E63');
 
-        // Draw the half-integer sine wave approximation
+        // Draw the half-integer cosine wave approximation
         utils.drawCurve(canvas, ctx, plotWidth, plotHeight, 
-            (x) => utils.calculateHalfIntegerSineApproximation(x, c, components), 
+            (x) => utils.calculateHalfIntegerCosineApproximation(x, c, components), 
             '#4CAF50');
 
         // Draw the legend
         utils.drawLegend(canvas, ctx, [
             { color: '#2196F3', label: 'Indicator Function', alpha: 0.6, dashed: true },
             { color: '#E91E63', label: 'Cosine Basis Approximation' },
-            { color: '#4CAF50', label: 'Half-Integer Sine Approximation' }
+            { color: '#4CAF50', label: 'Half-Integer Cosine Approximation' }
         ]);
     }
 

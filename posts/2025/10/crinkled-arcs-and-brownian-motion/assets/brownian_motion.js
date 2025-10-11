@@ -104,8 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return paths;
     }
 
-    // Function to simulate Brownian motion using half-integer sine wave method
-    function simulateBrownianMotionHalfIntegerSine(terms) {
+    // Function to simulate Brownian motion using half-integer cosine wave method
+    function simulateBrownianMotionHalfIntegerCosine(terms) {
         const paths = [[], [], []]; // Three sample paths
         const coefficients = [];
 
@@ -185,12 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
         drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[1], '#4CAF50');
         drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[2], '#2196F3');
 
-        // Draw legend
-        utils.drawLegend(canvas1, ctx1, [
-            { color: '#E91E63', label: 'Sample Path 1' },
-            { color: '#4CAF50', label: 'Sample Path 2' },
-            { color: '#2196F3', label: 'Sample Path 3' }
-        ]);
     }
 
     // Function to draw the second canvas (Fourier Series Brownian Motion)
@@ -206,33 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
         drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[1], '#4CAF50');
         drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[2], '#2196F3');
 
-        // Draw legend
-        utils.drawLegend(canvas2, ctx2, [
-            { color: '#E91E63', label: 'Sample Path 1' },
-            { color: '#4CAF50', label: 'Sample Path 2' },
-            { color: '#2196F3', label: 'Sample Path 3' }
-        ]);
     }
 
-    // Function to draw the third canvas (Half-Integer Sine Method)
+    // Function to draw the third canvas (Half-Integer Cosine Method)
     function drawCanvas3() {
         const terms = parseInt(termsSlider.value);
 
         ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
-        utils.drawTitle(canvas3, ctx3, 'Brownian Motion via Half-Integer Sine Method');
+        utils.drawTitle(canvas3, ctx3, 'Brownian Motion via Half-Integer Cosine Method');
         utils.drawAxes(canvas3, ctx3, plotWidth3, plotHeight3);
 
-        const paths = simulateBrownianMotionHalfIntegerSine(terms);
+        const paths = simulateBrownianMotionHalfIntegerCosine(terms);
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[0], '#E91E63');
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[1], '#4CAF50');
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[2], '#2196F3');
 
-        // Draw legend
-        utils.drawLegend(canvas3, ctx3, [
-            { color: '#E91E63', label: 'Sample Path 1' },
-            { color: '#4CAF50', label: 'Sample Path 2' },
-            { color: '#2196F3', label: 'Sample Path 3' }
-        ]);
     }
 
     // Function to draw all canvases
