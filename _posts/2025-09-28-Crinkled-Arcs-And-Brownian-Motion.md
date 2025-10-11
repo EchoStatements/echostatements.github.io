@@ -14,9 +14,9 @@ right-angle turns at every point along its trajectory. More than this, if you dr
 between two recent points and compare that line to a line drawn between any two points in its more
 distance past, you will find that these two lines are also perpendicular.
 
-On first glance, this feels really weird, and it may not be clear that such a curve should even 
-be possible to construct...even if we allow ourselves an infinite dimensional space to draw the 
-curve in. However, it turns out that not only do such curves exist, there are a more 
+On first glance, this feels really weird, and it may not be clear that such a curve should  
+be possible to construct, even if we allow ourselves an infinite dimensional space to draw it 
+in. However, it turns out that not only do such curves exist, there are a more 
 intuitive ways of thinking of them, once you choose a suitable space for those curves to live in 
 and think carefully about their construction. In this post, I describe two such ways that 
 crinkled arcs have been constructed, the first by defining it as a path through a space of 
@@ -149,10 +149,11 @@ This interactive visualization demonstrates how indicator functions work and how
 
 
 The last thing we need to check is continuity of $$f$$, which we get from the fact that as for 
-any $$a$$ and $$b$$, as $$a->b$$ the norm of the difference of the functions tends to zero. We use
+any $$a$$ and $$b$$, as $$a\rightarrow b$$ the norm of the difference of the functions tends to 
+zero. We use
 the same property of indicator functions we used in computing chord inner products to find:
 
-$$\lvert\lvert f(b)-f(a)\rvert\rvert^2 = \int_{i=0}^1 \lvert f(b)(s) - f(a)(s)\rvert^2 ds =  
+$$\lvert\lvert f(b)-f(a)\rvert\rvert^2 = \int_{0}^1 \lvert f(b)(s) - f(a)(s)\rvert^2 ds =  
 \int^b_a \,ds= 
 b-a$$
 
