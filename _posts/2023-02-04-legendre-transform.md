@@ -1,6 +1,8 @@
 ---
 title: 'Visualising the Legendre Transform'
 permalink: /posts/2023/02/visualising_the_legendre_transform/
+header:
+  teaser: /posts/2023/02/visualising_the_legendre_transform/legendre_transform/static_legendre.png
 tags:
 - legendre transform
 - maths

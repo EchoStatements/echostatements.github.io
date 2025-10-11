@@ -1,6 +1,8 @@
 ---
 title: 'Faster Siamese Network Training and Inference'
 permalink: /posts/2025/07/faster-siamese-network-training-and-inference/
+header:
+  teaser: /posts/2025/07/faster-siamese-network-training-and-inference/images/siamese%20diagrams.png
 tags:
 - Siamese neural networks
 - machine learning
@@ -216,10 +218,10 @@ for batch_idx, (images_1, images_2) in enumerate(train_loader):
     # images_1 and images_2 are both of shape (batch_size, ...)
     images_1, images_2 = images_1.to(device), images_2.to(device)
     optimizer.zero_grad()
-    
+
     # First examples: assume same class (positive pairs)
     same_class_targets = torch.ones(len(images_1)).to(device)
-    
+
     # Collect model outputs
     output1, output2 = model(images_1, images_2)
     outputs_same = torch.cat((output1, output2), dim=1)
