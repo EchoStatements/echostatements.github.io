@@ -1,22 +1,27 @@
 ---
 title: 'Crinkled Arcs And Brownian Motion'
 permalink: /posts/2025/10/crinkled-arcs-and-brownian-motion
+header:
+  teaser: /posts/2025/07/faster-siamese-network-training-and-inference/images/siamese%20diagrams.png
 tags:
 - maths
 - physics
 - Brownian motion
 ---
 
+A crinkled arc is a continuous curve with properties that make it appear as if it is making 
+right-angle turns at every point along its trajectory. More than this, if you draw a straight line 
+between two recent points and compare that line to a line drawn between any two points in its more
+distance past, you will find that these two lines are also perpendicular.
 
-On first glance, crinkled arcs are really weird objects. Loosely speaking,
- they are continuous curves that are making right angle turns
- at every point, and their direction at
-every point is orthogonal to their direction before or after that point.
-
-Reading their definition for the first time, it felt deeply unintuitive to me that such
-a curve should be able to exist---even if they only exist in infinite-dimensional spaces.
-However, they have a connection to Brownian motion that makes their properties seem
-much more obvious
+On first glance, this feels really weird, and it may not be clear that such a curve should even 
+be possible to construct...even if we allow ourselves an infinite dimensional space to draw the 
+curve in. However, it turns out that not only do such curves exist, there are a more 
+intuitive ways of thinking of them, once you choose a suitable space for those curves to live in 
+and think carefully about their construction. In this post, I describe two such ways that 
+crinkled arcs have been constructed, the first by defining it as a path through a space of 
+functions 
+and the second drawing a connection to Brownian motion, the random movement of particles suspended in fluid.
 
 ## Crinkled Arcs
 
