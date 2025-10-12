@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const granularityValue = document.getElementById('granularity-value');
     const termsSlider = document.getElementById('terms-slider');
     const termsValue = document.getElementById('terms-value');
+    const pathsSlider = document.getElementById('paths-slider');
+    const pathsValue = document.getElementById('paths-value');
+
+    // Define five color-blind friendly colors (avoiding brown)
+    const pathColors = [
+        '#E74C3C', // Red
+        '#2ECC71', // Green
+        '#3498DB', // Blue
+        '#9B59B6', // Purple
+        '#F1C40F'  // Yellow
+    ];
 
     // Use the shared utility module
     const utils = window.FourierUtils;
@@ -51,10 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to simulate Brownian motion using random walk
-    function simulateBrownianMotionRandomWalk(steps) {
-        const paths = [[], [], []]; // Three sample paths
+    function simulateBrownianMotionRandomWalk(steps, numPaths) {
+        const paths = [];
 
-        for (let path = 0; path < 3; path++) {
+        // Initialize paths array
+        for (let i = 0; i < numPaths; i++) {
+            paths.push([]);
+        }
+
+        for (let path = 0; path < numPaths; path++) {
             let position = 0;
             paths[path].push({ x: 0, y: position });
 
@@ -70,12 +86,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to simulate Brownian motion using Fourier series
-    function simulateBrownianMotionFourier(terms) {
-        const paths = [[], [], []]; // Three sample paths
+    function simulateBrownianMotionFourier(terms, numPaths) {
+        const paths = [];
         const coefficients = [];
 
+        // Initialize paths array
+        for (let i = 0; i < numPaths; i++) {
+            paths.push([]);
+        }
+
         // Generate random coefficients for each path
-        for (let path = 0; path < 3; path++) {
+        for (let path = 0; path < numPaths; path++) {
             coefficients[path] = [];
             coefficients[path].push(randomNormal()); // X_0
 
@@ -86,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Calculate paths using the coefficients
         const steps = 100;
-        for (let path = 0; path < 3; path++) {
+        for (let path = 0; path < numPaths; path++) {
             // Start at t=0 with position=0
             paths[path].push({ x: 0, y: 0 });
 
@@ -109,12 +130,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to simulate Brownian motion using half-integer cosine wave method
-    function simulateBrownianMotionHalfIntegerCosine(terms) {
-        const paths = [[], [], []]; // Three sample paths
+    function simulateBrownianMotionHalfIntegerCosine(terms, numPaths) {
+        const paths = [];
         const coefficients = [];
 
+        // Initialize paths array
+        for (let i = 0; i < numPaths; i++) {
+            paths.push([]);
+        }
+
         // Generate random coefficients for each path
-        for (let path = 0; path < 3; path++) {
+        for (let path = 0; path < numPaths; path++) {
             coefficients[path] = [];
             for (let n = 1; n <= terms; n++) {
                 coefficients[path].push(randomNormal());
@@ -123,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Calculate paths using the coefficients
         const steps = 100;
-        for (let path = 0; path < 3; path++) {
+        for (let path = 0; path < numPaths; path++) {
             // Start at t=0 with position=0
             paths[path].push({ x: 0, y: 0 });
 
@@ -211,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.save();
         ctx.translate(15, canvas.height / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('B(t)', 0, 0);
+        ctx.fillText('W(t)', 0, 0);
         ctx.restore();
 
         // Zero line
@@ -250,43 +276,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to draw the first canvas (Random Walk Brownian Motion)
     function drawCanvas1() {
         const granularity = parseInt(granularitySlider.value);
+        const numPaths = parseInt(pathsSlider.value);
 
         ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
         utils.drawTitle(canvas1, ctx1, 'Brownian Motion via Random Walk');
         drawBrownianAxes(canvas1, ctx1, plotWidth1, plotHeight1);
 
-        const paths = simulateBrownianMotionRandomWalk(granularity);
-        drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[0], '#E91E63');
-        drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[1], '#4CAF50');
-        drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[2], '#2196F3');
+        const paths = simulateBrownianMotionRandomWalk(granularity, numPaths);
+        for (let i = 0; i < numPaths; i++) {
+            drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[i], pathColors[i]);
+        }
     }
 
     // Function to draw the second canvas (Fourier Series Brownian Motion)
     function drawCanvas2() {
         const terms = parseInt(termsSlider.value);
+        const numPaths = parseInt(pathsSlider.value);
 
         ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
         utils.drawTitle(canvas2, ctx2, 'Brownian Motion via Fourier Series');
         drawBrownianAxes(canvas2, ctx2, plotWidth2, plotHeight2);
 
-        const paths = simulateBrownianMotionFourier(terms);
-        drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[0], '#E91E63');
-        drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[1], '#4CAF50');
-        drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[2], '#2196F3');
+        const paths = simulateBrownianMotionFourier(terms, numPaths);
+        for (let i = 0; i < numPaths; i++) {
+            drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[i], pathColors[i]);
+        }
     }
 
     // Function to draw the third canvas (Half-Integer Cosine Method)
     function drawCanvas3() {
         const terms = parseInt(termsSlider.value);
+        const numPaths = parseInt(pathsSlider.value);
 
         ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
         utils.drawTitle(canvas3, ctx3, 'Brownian Motion via Half-Integer Cosine Method');
         drawBrownianAxes(canvas3, ctx3, plotWidth3, plotHeight3);
 
-        const paths = simulateBrownianMotionHalfIntegerCosine(terms);
-        drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[0], '#E91E63');
-        drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[1], '#4CAF50');
-        drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[2], '#2196F3');
+        const paths = simulateBrownianMotionHalfIntegerCosine(terms, numPaths);
+        for (let i = 0; i < numPaths; i++) {
+            drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[i], pathColors[i]);
+        }
     }
 
     // Function to draw all canvases
@@ -309,6 +338,12 @@ document.addEventListener('DOMContentLoaded', function() {
         termsValue.textContent = terms;
         drawCanvas2();
         drawCanvas3();
+    });
+
+    pathsSlider.addEventListener('input', function(e) {
+        const numPaths = parseInt(e.target.value);
+        pathsValue.textContent = numPaths;
+        drawAll();
     });
 
     // Event listener for the re-sample button

@@ -80,7 +80,7 @@ $$ \langle f(b) - f(a), f(d) - f(c) \rangle = 0$$ for all
 $$0 \leq a < b \leq c < d$$. This gives us an idea for how to construct a solution: if the function 
 $$f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$f(d)-f(c)$$ is zero outside of the 
 interval $$[c,d]$$, then their inner product will be zero, since the product of the two 
-functions will be zero everwhere. 
+functions will be zero everywhere. 
 
 The easiest way to do this is with indicator functions. Defining $$𝟙_{[0,t]}(x) = \begin{cases}1 
 \textnormal{ if } x \leq t \\ 0 \textnormal{ if } x > t \end{cases}$$.
@@ -97,6 +97,7 @@ as the pink area in the bottom plot). When the intervals overlap, there are valu
 both differences give a non-zero value at $$x$$, contributing to a non-zero inner product. When 
 they don't overlap, the product is zero everywhere, meaning that the functions are orthogonal.
 
+![img.png](indicator_teaser.png)
 <div class="container">
     <h3>Interactive Visualization of Indicator Functions</h3>
 
@@ -284,7 +285,6 @@ approximations of the infinite sum, we get a good approximation of the indicator
 <script src="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/fourier_series_cosine.js"></script>
 
 
-
 ## Building the Standard Solution
 
 In the previous section, we wrote our crinkled arc in terms of a series based on the Fourier 
@@ -302,12 +302,12 @@ as a potential topic for a future post.
 I wasn't able to find the form of these basis functions anywhere, though looking at the 
 coefficients, they can be guessed at pretty easily, and then we can verify that the guess is 
 correct. 
-Given that the coefficients we expect look like the coefficients we just derived for the Fourier 
-series but with $$n$$ shifted by $$\frac{1}{2}$$, we choose the basis functions to be 
+Given that the coefficients we are expecting look a lot  like the coefficients we just derived for 
+the Fourier series but with $$n$$ shifted by $$\frac{1}{2}$$, we choose the new basis functions 
+to 
 $$\phi_n$$ to have that same shift
 $$\phi_n(x) = \sqrt{2} \cos \left( (n - \frac{1}{2}) \pi x \right)$$. Note that have to 
-[check](https://www.wolframalpha.com/input?
-i=integral+of+cos%5E2%28%28n-%281%2F2%29%29+pi+x%29+dx+between+0+and+1) that 
+[check](https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28%28n-%281%2F2%29%29+pi+x%29+dx+between+0+and+1) that 
 $$\sqrt{2}$$ remains the correct normalisation constant.
 
 With this change, we can once again calculate the coefficients in the same way to verify our guess:
@@ -321,9 +321,9 @@ Since this time there is no $$\phi_0$$ coefficient, we get the solution:
 
 $$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi}.$$
 
-We can once again show that our this solution makes sense by plotting, as shown in the following
+We can once again show that this solution makes sense by plotting, as shown in the following
 visualisation. It's interesting to observe that while both series (unsurprisingly) converge to the 
-target function, they converge faster to each other.
+target function, they also converge faster to each other.
 
 <div class="container">
     <h3>Interactive Visualization of Fourier Series Approximations</h3>
@@ -392,7 +392,7 @@ move through the medium, its overall motion is jittery, and its movement over an
 non-overlapping intervals is completely independent.
 
 Surprisingly, in describing the crinkled arc, we have also incidentally formulated a 
-representation of Brownian motion, a connection that we will elucidate.
+representation of Brownian motion, a connection that we will now explore in more detail.
 
 Mathematically, Brownian motion is a stochastic process: a set of random variables 
 $$\{W_t\}_{t\in[0,1]}$$ indexed by real-valued $$t$$ and defined by the following four 
@@ -401,10 +401,10 @@ properties:
 1. Almost surely, $$W_0 = 0$$
 2. $$W_t$$ is almost surely continuous in $$t$$
 3. For $$0\leq a < b \leq c < d \leq 1$$, $$W_b-W_a$$ is independent of $$W_d-W_c$$
-4. $$W_b-W_a \sim \mathcal{N}(0, b-a)$$ for $$0 \leq b \leq a$$
+4. $$W_b-W_a \sim \mathcal{N}(0, b-a)$$ for $$0 \leq a \leq b$$
 
 These properties are very similar to the properties we've encountered in our construction of the
-crinkled arc using interval functions. For our crinkled arc $$f$$:
+crinkled arc using indicator functions. For our crinkled arc $$f$$:
 
 1. $$f(0)$$ is the zero function (i.e., $$f(0): x \mapsto 0$$ for all $$x$$).
 2. $$f$$ is continuous.
@@ -415,7 +415,7 @@ These connections are concrete enough that we should expect to be able to constr
 between the two.
 
 Let's start off with properties 3 and 4 of Brownian motion. We want that for $$a,b,c,d$$ defined
-in the usual way that $$W_b-W_a \sim \mathcal{N}(0, b-a)$$ and $$W_b-W_a \sim \mathcal{N}(0, d-c)$$
+in the usual way that $$W_b-W_a \sim \mathcal{N}(0, b-a)$$ and $$W_d-W_c \sim \mathcal{N}(0, d-c)$$
 with the two normal distributions being independent. 
 
 We can notice that for our crinkled arc $$f$$,
@@ -435,23 +435,28 @@ inner product to be the covariance (after proving that covariance fits all the n
 criteria for an inner product). But, now we know that $$W_t$$'s live in a Hilbert space, and their
 trajectory fits all the properties that $$W_t$$ has to follow a crinkled arc.
 
-More than that, since we know that for the crinkled arc, there is a basis such that 
+More than that, since we know that for the crinkled arc, there is an orthonormal basis $$\{X_n\}$$ 
+such that 
 
 $$W_t = \sqrt{2} \sum_{n=1}^\infty X_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi},$$
 
 Now what are the basis vectors? They're independent normal distributions with zero mean and unit
 variance! We get that they're normally distributed because they are a basis for the space spanned by
-$$W_t$$, which consists solely of zero-mean normally distributed variables (consider the third 
-property 
-and that $$W_t = W_t-W_0$$ by the first property). And by the criterion that the basis form an 
+$$W_t$$, which consists solely of zero-mean normally distributed variables (to see that 
+$$W_t$$ is normally distributed consider that $$W_t = W_t-W_0$$ follows a normal distribution 
+and that $$W_0$$ is almost-surely zero). And by the 
+criterion that the basis form an 
 orthonormal set guarantee unit variance (by normalisation) and independence (by orthogonality).
 
 Though this representation of Brownian motion is well-known in the literature, this is not the 
-usual derivation. Indeed, in proving the generality of the solution for the crinkled arc, Johnson
+usual derivation. Indeed, in proving the generality of the solution for the crinkled arc, [Vitale](https://www.ams.org/journals/proc/1975-052-01/S0002-9939-1975-0388056-1/S0002-9939-1975-0388056-1.pdf)
 drew the connection the other way, asserting that the crinkled arc is a form of Brownian motion
-and going from there. The Fourier cosine basis as a representation of Brownian motion is also 
-well known (see a derivation on YouTube [here](https://www.youtube.com/watch?v=gtaaoi9rHMo)). For 
-completeness, it is of the form:
+and going from there. 
+
+The Fourier cosine basis as a representation of Brownian motion is also 
+well known (see a derivation on YouTube [here](https://www.youtube.com/watch?v=gtaaoi9rHMo)). 
+Using the same reasoning as for the half-integer cosine series, we get that Brownian motion can 
+also be represented as:
 
 $$W_t= X(t) + \sum_{n=1}^\infty \frac{\sqrt{2}}{n \pi} \sin(n \pi t) \phi_n(t).$$
 
@@ -461,9 +466,6 @@ number of terms.
 
 <div class="container">
     <h3>Interactive Visualization of Brownian Motion</h3>
-    <div class="description">
-        Visualization of Brownian motion on [0,1] using different simulation methods
-    </div>
 
     <div class="plot-container">
         <canvas id="brownian-canvas1" width="800" height="300"></canvas>
@@ -482,7 +484,7 @@ number of terms.
             <h3>Random Walk Simulation</h3>
             <h4>Granularity (number of steps)</h4>
             <div class="slider-container">
-                <input type="range" id="granularity-slider" min="10" max="1000" step="10" value="100">
+                <input type="range" id="granularity-slider" min="10" max="200" step="10" value="100">
                 <span class="value-display" id="granularity-value">100</span>
             </div>
         </div>
@@ -491,33 +493,27 @@ number of terms.
             <h3>Fourier Series Simulation</h3>
             <h4>Number of terms</h4>
             <div class="slider-container">
-                <input type="range" id="terms-slider" min="1" max="1000" step="1" value="10">
-                <span class="value-display" id="terms-value">10</span>
+                <input type="range" id="terms-slider" min="1" max="200" step="1" value="100">
+                <span class="value-display" id="terms-value">100</span>
             </div>
         </div>
 
         <div class="toggles" style="margin-top: 20px; margin-bottom: 20px;">
             <button id="resample-btn">Re-sample All Paths</button>
         </div>
-    </div>
 
+        <div class="control-group">
+            <h3>Path Visualization</h3>
+            <h4>Number of paths to draw</h4>
+            <div class="slider-container">
+                <input type="range" id="paths-slider" min="1" max="5" step="1" value="3">
+                <span class="value-display" id="paths-value">3</span>
+            </div>
+        </div>
+    </div>
     <div class="description" style="margin-top: 20px;">
         <p>
             This visualization demonstrates two methods for simulating Brownian motion on the interval [0,1].
-        </p>
-        <p>
-            The first plot shows Brownian motion simulated as the limit of a random walk. As the granularity increases, 
-            the simulation approaches true Brownian motion. Three sample paths are shown to illustrate the random nature.
-        </p>
-        <p>
-            The second plot shows Brownian motion simulated using the Fourier series representation:
-            B(t) = X₀·t + ∑ₙ₌₂ Xₙ·√2/(nπ)·sin(nπt)
-            where X₀, X₁, X₂, ... are independent standard normal random variables.
-        </p>
-        <p>
-            The third plot shows Brownian motion simulated using the half-integer sine wave method:
-            B(t) = ∑ₙ Xₙ·√2·sin((n-1/2)πt)/((n-1/2)π)
-            where X₁, X₂, ... are independent standard normal random variables.
         </p>
     </div>
 </div>
@@ -529,15 +525,16 @@ number of terms.
 ## Conclusion
 
 This post has described crinkled arcs in three ways: a function describing the curve made by 
-continuously varying a parameter in an interval function, using a set of basis 
+continuously varying a parameter in an interval function, using a set of
 trigonometric basis functions and as the trajectory of Brownian motion through a Hilbert space 
 of normal distribution random variables.
 
-The original motivation for this blog post was to clarify for myself the relationship between these 
-three descriptions (in his original work, Johnson jumped immediately between the third and second
-using the Kosambi–Karhunen–Loève theorem). I was somewhat surprised to find the definition of the 
-basis functions for the crinkled arc in $$L^2(0,1)$$ did not appear in any sources that I found, 
-though I was also surprised by how few sources I could find.
+The original motivation for this post was to clarify for myself the relationship between these 
+three descriptions, giving more space to elucidate the relationship between the crinkled arc and 
+Brownian motion than I was able to find in the literature. I was somewhat surprised to find the 
+definition of the basis functions for the crinkled arc in $$L^2(0,1)$$ did not appear in any sources
+that I found. In exploring these connections, I hope that this post can serve as reasonable 
+introduction to the crinkled arc and make its properties seem a little less unintuitive.
 
 ## References
 
@@ -550,7 +547,7 @@ Vitale, Richard A. "Representation of a crinkled arc." Proceedings of the Americ
 
 ## Cite This Post
 ```bibtex
-@misc{woood2025crinkled,
+@misc{wood2025crinkled,
   author = {Wood, Danny},
   title = {Crinkled Arcs and Brownian Motion},
   year = {2025},
@@ -558,7 +555,7 @@ Vitale, Richard A. "Representation of a crinkled arc." Proceedings of the Americ
   url = {https://echostatements.github.io/posts/2025/10/crinkled-arcs-and-brownian-motion/}
 }
 ```
-[^normalise]: see [here] [https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28n+pi+x%29+dx+between+0+and+1] for evaluation of the integral.
+[^normalise]: see [here](https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28n+pi+x%29+dx+between+0+and+1) for evaluation of the integral.
 
 [^derivation]: Given the solution that we find, this can be done by rescaling and using the completeness of the set of $$cos(n \pi x)$$ as a basis for $$L^2(0,1)$$.
 
