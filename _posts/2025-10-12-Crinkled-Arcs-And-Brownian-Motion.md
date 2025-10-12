@@ -69,18 +69,21 @@ of the two functions, so functions $$\psi:[0,1]\to\mathbb{R}$$ and
 $$\varphi:[0,1]\to\mathbb{R}$$ are orthogonal if and only if they satisfy
 $$\int_0^1 \psi(x) \varphi(x) \,dx=0$$. Here, we use Greek letters $$\varphi$$ and $$\psi$$ to denote 
 functions from $$(0,1)$$ to $$\mathbb{R}$$ so as to not confuse them with $$f$$, 
-which is a function which maps from the interval $$(0,1)$$ to real-valued _functions_.
+which is a function which maps from the interval $$(0,1)$$ to real-valued _functions_, i.e.
+$$f: [0,1] \to L^2(0,1)$$, and for $$t \in [0,1]$$, $$f(t):[0,1]\to\mathbb{R}$$.
 
-More generally, our Hilbert spaces dot product is defined by this integral $$\langle \psi,\varphi 
+More generally, our Hilbert space's dot product is defined by this integral $$\langle \psi,\varphi 
 \rangle 
 = \int^1_0 \psi(x)\varphi(x)\,dx $$. 
 
 Remember that for crinkled arcs, we want 
 $$ \langle f(b) - f(a), f(d) - f(c) \rangle = 0$$ for all 
-$$0 \leq a < b \leq c < d$$. This gives us an idea for how to construct a solution: if the function 
-$$f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$f(d)-f(c)$$ is zero outside of the 
-interval $$[c,d]$$, then their inner product will be zero, since the product of the two 
-functions will be zero everywhere. 
+$$0 \leq a < b \leq c < d$$. This gives us an idea for how to construct a solution:
+if the function 
+$$\phi = f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$\psi = f(d)-f(c)$$ is zero 
+outside of the 
+interval $$[c,d]$$, then there is no value of $$x$$ such that both $$\phi(x)$$ and $$\psi(x)$$ 
+are both non-zero, and therefore their inner product will also be zero.
 
 The easiest way to do this is with indicator functions. Defining $$𝟙_{[0,t]}(x) = \begin{cases}1 
 \textnormal{ if } x \leq t \\ 0 \textnormal{ if } x > t \end{cases}$$.
@@ -184,7 +187,7 @@ To fix this, it would be nice if we could define a basis and give the curve some
 So let's try using the [Fourier series](https://scholar.harvard.edu/files/schwartz/files/lecture5-fourier.pdf) 
 to find a basis and to see what the components look like.
 
-Recall that absolutely integrable period function with period 2 and only finitely many maxima, 
+Recall that absolutely integrable periodic function with period 2 and only finitely many maxima, 
 minima and discontinuities can be written as:
 
 $$\varphi(x) = a_0 + \sum_{n=1}^\infty a_n \cos nx + \sum_{n=1}^\infty b_n \sin nx,$$
@@ -207,19 +210,20 @@ their
 square integrates to one[^normalise], so our non-constant
 basis functions are of the form $$\phi_n(x)= \sqrt{2} \cos(n \pi x)$$.
 
-With this, we have that $$f (t) = \sum_{n=1}^\infty a_n(t) \phi_n$$ 
+With this, we have that $$f (t) = \sum_{n=0}^\infty a_n(t) \phi_n$$ 
 for some sequence of $$a_n \in \mathbb{R}$$. We find these coefficients using our inner product
 to find the projection of $$f(t)$$ onto $$\phi_n$$ for each $$\phi_n$$. So for $$n>0$$, 
 remembering that $$f(t)$$ is the interval indicator function for the interval $$[0,t]$$:
 
-$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) \phi_n(x) \, dx\\
+$$\begin{aligned} a_n(t) &= \langle \phi_n, f(t) \rangle \\
+&=\int_0^1 f(t)(x) \phi_n(x) \, dx\\
 &= \int_0^t \phi_n(x) \\
 &= \int_0^t \sqrt 2 \cos (n \pi x) \,dx \\
-&= -\frac{\sqrt 2}{n \pi} \sin (n \pi x) \end{aligned}$$
+&= -\frac{\sqrt 2}{n \pi} \sin (n \pi t) \end{aligned}$$
 
 and for $$n=0$$ we have
 
-$$\begin{aligned} a_0(t) &= \int_0^1 f(t)(x) \, dx\\
+$$\begin{aligned} a_0(t) &= \langle \phi_0, f(t) \rangle \\&= \int_0^1 f(t)(x) \, dx\\
 &= t \end{aligned}.$$
 
 Remembering the $$\sqrt{2}$$ in front of non-constant basis functions, this gives
@@ -228,7 +232,7 @@ $$f(t) : x \mapsto t + \sum_{n=1}^\infty \frac{2}{n \pi} \sin (n \pi t) \cos(n \
 
 Reabsorbing the basis functions into $$\phi_n$$, we can also write this to as
 
-$$f(t)= \phi_0(t) + \sum_{n=1}^\infty \frac{\sqrt{2}}{n \pi} \sin(n \pi t) \phi_n(t).$$
+$$f(t)= \phi_0 t + \sum_{n=1}^\infty \frac{\sqrt{2}}{n \pi} \sin(n \pi t) \phi_n.$$
 
 This solution can be verified using the visualisation below, showing that even with finite 
 approximations of the infinite sum, we get a good approximation of the indicator function.
@@ -273,7 +277,16 @@ approximations of the infinite sum, we get a good approximation of the indicator
 ## Building the Standard Solution
 
 In the previous section, we wrote our crinkled arc in terms of a series based on the Fourier 
-expansion of functions. In this section we are going to use what we know the coefficients look like
+expansion of functions.
+However, when we introduced the crinkled arc a couple of sections ago, we also gave a claimed 
+general solution:
+
+$$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) 
+\pi},$$
+
+This does not look like our expansion in terms of Fourier basis functions. So what 
+set of basis functions would we need for the standard solution?
+In this section we are going to use what we know the coefficients look like
 for the standard solution to guess at a set of basis functions. 
 
 Guessing and checking may feel unsatisfying for a couple of reasons: Firstly, we need to worry 
@@ -297,10 +310,11 @@ $$\sqrt{2}$$ remains the correct normalisation constant.
 
 With this change, we can once again calculate the coefficients in the same way to verify our guess:
 
-$$\begin{aligned} a_n(t) &= \int_0^1 f(t)(x) \phi_n(x) \, dx\\
+$$\begin{aligned} a_n(t) &= \langle \phi_n, f(t)\rangle\\
+&=\int_0^1 f(t)(x) \phi_n(x) \, dx\\
 &= \int_0^t \phi_n(x) \\
 &= \int_0^t \sqrt 2 \cos ( (n - \frac{1}{2})\pi x) \,dx \\
-&= -\frac{\sqrt 2}{ (n - \frac{1}{2})\pi } \sin ( (n - \frac{1}{2})\pi x) \end{aligned}$$
+&= -\frac{\sqrt 2}{ (n - \frac{1}{2})\pi } \sin ( (n - \frac{1}{2})\pi t) \end{aligned}$$
 
 Since this time there is no $$\phi_0$$ coefficient, we get the solution:
 
@@ -361,7 +375,7 @@ non-overlapping intervals is completely independent.
 Surprisingly, in describing the crinkled arc, we have also incidentally formulated a 
 representation of Brownian motion, a connection that we will now explore in more detail.
 
-Mathematically, Brownian motion is a stochastic process: a set of random variables 
+Mathematically, Brownian motion is a stochastic process: a set of real-valued random variables 
 $$\{W_t\}_{t\in[0,1]}$$ indexed by real-valued $$t$$ and defined by the following four 
 properties:
 
@@ -503,6 +517,10 @@ definition of the basis functions for the crinkled arc in $$L^2(0,1)$$ did not a
 that I found. In exploring these connections, I hope that this post can serve as reasonable 
 introduction to the crinkled arc and make its properties seem a little less unintuitive.
 
+
+_Thanks to [Andrew Webb](https://twitter.com/AndrewM_Webb) for feedback on a draft version  
+of this post._
+
 ## References
 
 Halmos, P. R. (2012). A Hilbert space problem book (Vol. 19). Springer Science & Business Media. 
@@ -524,6 +542,7 @@ Vitale, Richard A. "Representation of a crinkled arc." Proceedings of the Americ
 ```
 [^normalise]: see [here](https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28n+pi+x%29+dx+between+0+and+1) for evaluation of the integral.
 
-[^derivation]: Given the solution that we find, this can be done by rescaling and using the completeness of the set of $$cos(n \pi x)$$ as a basis for $$L^2(0,1)$$.
+[^derivation]: Given the solution that we find, this can be done by rescaling and using the 
+completeness of the set of $$\cos(n \pi x)$$ as a basis for $$L^2(0,1)$$.
 
 [^derivation2]: At least the way that I would currently attempt it.
