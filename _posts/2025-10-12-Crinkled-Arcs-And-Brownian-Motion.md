@@ -278,14 +278,14 @@ approximations of the infinite sum, we get a good approximation of the indicator
 
 In the previous section, we wrote our crinkled arc in terms of a series based on the Fourier 
 expansion of functions.
-However, when we introduced the crinkled arc a couple of sections, ago, we also gave the claimed 
+However, when we introduced the crinkled arc a couple of sections ago, we also gave a claimed 
 general solution:
 
 $$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) 
 \pi},$$
 
-However, this does not look like our expansion in terms of Fourier basis functions. So what 
-set of basis functions are used for the general solution?
+This does not look like our expansion in terms of Fourier basis functions. So what 
+set of basis functions would we need for the standard solution?
 In this section we are going to use what we know the coefficients look like
 for the standard solution to guess at a set of basis functions. 
 
@@ -516,6 +516,10 @@ Brownian motion than I was able to find in the literature. I was somewhat surpri
 definition of the basis functions for the crinkled arc in $$L^2(0,1)$$ did not appear in any sources
 that I found. In exploring these connections, I hope that this post can serve as reasonable 
 introduction to the crinkled arc and make its properties seem a little less unintuitive.
+
+
+_Thanks to [Andrew Webb](https://twitter.com/AndrewM_Webb) for feedback on a draft version  
+of this post._
 
 ## References
 
