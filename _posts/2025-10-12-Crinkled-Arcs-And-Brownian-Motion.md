@@ -372,8 +372,8 @@ time it will
 move through the medium, its overall motion is jittery, and its movement over any two 
 non-overlapping intervals is completely independent.
 
-Surprisingly, in describing the crinkled arc, we have also incidentally formulated a 
-representation of Brownian motion, a connection that we will now explore in more detail.
+Surprisingly, in describing the crinkled arc, we have also incidentally formulated a representation 
+of Brownian motion, a connection that we will now explore in more detail.
 
 Mathematically, Brownian motion is a stochastic process: a set of real-valued random variables 
 $$\{W_t\}_{t\in[0,1]}$$ indexed by real-valued $$t$$ and defined by the following four 
@@ -518,8 +518,7 @@ that I found. In exploring these connections, I hope that this post can serve as
 introduction to the crinkled arc and make its properties seem a little less unintuitive.
 
 
-_Thanks to [Andrew Webb](https://twitter.com/AndrewM_Webb) for feedback on a draft version  
-of this post._
+_Thanks to [Andrew Webb](https://twitter.com/AndrewM_Webb) for feedback on a draft version of this post._
 
 ## References
 
