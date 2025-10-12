@@ -87,7 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate paths using the coefficients
         const steps = 100;
         for (let path = 0; path < 3; path++) {
-            for (let i = 0; i <= steps; i++) {
+            // Start at t=0 with position=0
+            paths[path].push({ x: 0, y: 0 });
+
+            // Calculate remaining points
+            for (let i = 1; i <= steps; i++) {
                 const t = i / steps;
                 let position = coefficients[path][0] * t; // X_0 * t term
 
@@ -120,7 +124,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate paths using the coefficients
         const steps = 100;
         for (let path = 0; path < 3; path++) {
-            for (let i = 0; i <= steps; i++) {
+            // Start at t=0 with position=0
+            paths[path].push({ x: 0, y: 0 });
+
+            // Calculate remaining points
+            for (let i = 1; i <= steps; i++) {
                 const t = i / steps;
                 let position = 0;
 
@@ -136,31 +144,98 @@ document.addEventListener('DOMContentLoaded', function() {
         return paths;
     }
 
+    // Custom function to convert y-coordinate for Brownian motion
+    function toBrownianCanvasY(canvas, plotHeight, y) {
+        // Map from [-2, 2] to canvas coordinates
+        const minY = -2;
+        const maxY = 2;
+        const range = maxY - minY;
+        return canvas.height - utils.padding - ((y - minY) / range) * plotHeight;
+    }
+
+    // Custom function to draw axes for Brownian motion
+    function drawBrownianAxes(canvas, ctx, plotWidth, plotHeight) {
+        const padding = utils.padding;
+
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+
+        // X-axis
+        ctx.beginPath();
+        ctx.moveTo(padding, canvas.height - padding);
+        ctx.lineTo(canvas.width - padding, canvas.height - padding);
+        ctx.stroke();
+
+        // Y-axis
+        ctx.beginPath();
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, canvas.height - padding);
+        ctx.stroke();
+
+        // Labels
+        ctx.fillStyle = '#333';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'center';
+
+        // X-axis labels
+        for (let i = 0; i <= 10; i++) {
+            const x = padding + (i / 10) * plotWidth;
+            const label = (i / 10).toFixed(1);
+            ctx.fillText(label, x, canvas.height - padding + 20);
+
+            // Tick marks
+            ctx.beginPath();
+            ctx.moveTo(x, canvas.height - padding);
+            ctx.lineTo(x, canvas.height - padding + 5);
+            ctx.stroke();
+        }
+
+        // Y-axis labels for Brownian motion scale [-2, 2]
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        const yValues = [-2, -1, 0, 1, 2];
+        for (let val of yValues) {
+            const y = toBrownianCanvasY(canvas, plotHeight, val);
+            ctx.fillText(val.toFixed(1), padding - 10, y);
+
+            // Tick marks
+            ctx.beginPath();
+            ctx.moveTo(padding - 5, y);
+            ctx.lineTo(padding, y);
+            ctx.stroke();
+        }
+
+        // Axis labels
+        ctx.textAlign = 'center';
+        ctx.fillText('t', canvas.width / 2, canvas.height - 10);
+        ctx.save();
+        ctx.translate(15, canvas.height / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('B(t)', 0, 0);
+        ctx.restore();
+
+        // Zero line
+        ctx.strokeStyle = '#ccc';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([5, 5]);
+        const y0 = toBrownianCanvasY(canvas, plotHeight, 0);
+        ctx.beginPath();
+        ctx.moveTo(padding, y0);
+        ctx.lineTo(canvas.width - padding, y0);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
     // Function to draw a Brownian motion path
     function drawPath(canvas, ctx, plotWidth, plotHeight, path, color) {
         ctx.strokeStyle = color;
         ctx.lineWidth = 2;
         ctx.beginPath();
 
-        // Find min and max y values to scale properly
-        let minY = Infinity;
-        let maxY = -Infinity;
-        for (const point of path) {
-            minY = Math.min(minY, point.y);
-            maxY = Math.max(maxY, point.y);
-        }
-
-        // Add some padding
-        const padding = (maxY - minY) * 0.1;
-        minY -= padding;
-        maxY += padding;
-
-        // Draw the path
+        // Draw the path using our custom y-coordinate mapping
         for (let i = 0; i < path.length; i++) {
             const x = utils.toCanvasX(canvas, plotWidth, path[i].x);
-            // Scale y to fit in the canvas
-            const normalizedY = (path[i].y - minY) / (maxY - minY);
-            const y = utils.toCanvasY(canvas, plotHeight, normalizedY);
+            const y = toBrownianCanvasY(canvas, plotHeight, path[i].y);
 
             if (i === 0) {
                 ctx.moveTo(x, y);
@@ -178,13 +253,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
         utils.drawTitle(canvas1, ctx1, 'Brownian Motion via Random Walk');
-        utils.drawAxes(canvas1, ctx1, plotWidth1, plotHeight1);
+        drawBrownianAxes(canvas1, ctx1, plotWidth1, plotHeight1);
 
         const paths = simulateBrownianMotionRandomWalk(granularity);
         drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[0], '#E91E63');
         drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[1], '#4CAF50');
         drawPath(canvas1, ctx1, plotWidth1, plotHeight1, paths[2], '#2196F3');
-
     }
 
     // Function to draw the second canvas (Fourier Series Brownian Motion)
@@ -193,13 +267,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
         utils.drawTitle(canvas2, ctx2, 'Brownian Motion via Fourier Series');
-        utils.drawAxes(canvas2, ctx2, plotWidth2, plotHeight2);
+        drawBrownianAxes(canvas2, ctx2, plotWidth2, plotHeight2);
 
         const paths = simulateBrownianMotionFourier(terms);
         drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[0], '#E91E63');
         drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[1], '#4CAF50');
         drawPath(canvas2, ctx2, plotWidth2, plotHeight2, paths[2], '#2196F3');
-
     }
 
     // Function to draw the third canvas (Half-Integer Cosine Method)
@@ -208,13 +281,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
         utils.drawTitle(canvas3, ctx3, 'Brownian Motion via Half-Integer Cosine Method');
-        utils.drawAxes(canvas3, ctx3, plotWidth3, plotHeight3);
+        drawBrownianAxes(canvas3, ctx3, plotWidth3, plotHeight3);
 
         const paths = simulateBrownianMotionHalfIntegerCosine(terms);
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[0], '#E91E63');
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[1], '#4CAF50');
         drawPath(canvas3, ctx3, plotWidth3, plotHeight3, paths[2], '#2196F3');
-
     }
 
     // Function to draw all canvases

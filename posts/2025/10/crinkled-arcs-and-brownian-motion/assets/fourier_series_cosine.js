@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = canvas.getContext('2d');
 
     // Get references to the sliders
-    const cSlider = document.getElementById('c-slider-cosine');
+    const tSlider = document.getElementById('t-slider-cosine');
     const componentsSlider = document.getElementById('components-slider-cosine');
-    const cValue = document.getElementById('c-value-cosine');
+    const tValue = document.getElementById('t-value-cosine');
     const componentsValue = document.getElementById('components-value-cosine');
 
     // Use the shared utility module
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to draw the canvas
     function drawCanvas() {
-        const c = parseFloat(cSlider.value);
+        const t = parseFloat(tSlider.value);
         const components = parseInt(componentsSlider.value);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
         utils.drawAxes(canvas, ctx, plotWidth, plotHeight);
 
         // Draw the indicator function
-        utils.drawIndicatorFunction(canvas, ctx, plotWidth, plotHeight, c, '#2196F3');
+        utils.drawIndicatorFunction(canvas, ctx, plotWidth, plotHeight, t, '#2196F3');
 
         // Draw the Fourier approximation (cosine basis)
         utils.drawCurve(canvas, ctx, plotWidth, plotHeight, 
-            (x) => utils.calculateFourierApproximation(x, c, components), 
+            (x) => utils.calculateFourierApproximation(x, t, components), 
             '#E91E63');
 
         // Draw the legend
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event listeners for sliders
-    cSlider.addEventListener('input', function(e) {
-        const c = parseFloat(e.target.value);
-        cValue.textContent = c.toFixed(2);
+    tSlider.addEventListener('input', function(e) {
+        const t = parseFloat(e.target.value);
+        tValue.textContent = t.toFixed(2);
         drawCanvas();
     });
 

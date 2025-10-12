@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.save();
         ctx.translate(15, canvas.height / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('f(x)', 0, 0);
+        ctx.fillText('ψ(x)', 0, 0);
         ctx.restore();
 
         // Zero line
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         drawPairCanvas(
             canvas2, ctx2, plotWidth2, plotHeight2,
             c3Slider, c4Slider,
-            '#FF9800', '#9C27B0', '#00BCD4',
+            '#9C27B0', '#FF9800', '#00BCD4',
             drawLegend2,
             'Second Pair and Difference'
         );
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const c4 = parseFloat(c4Slider.value);
 
         ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
-        drawTitle(canvas3, ctx3, 'Product');
+        drawTitle(canvas3, ctx3, 'Inner Product');
         drawAxes(canvas3, ctx3, plotWidth3, plotHeight3);
 
         // Draw the difference areas first if differences are shown
@@ -446,31 +446,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Draw legend for canvas1
     function drawLegend1() {
         const items = [
-            { color: '#2196F3', label: '𝟙[0,c₁](x)', visible: toggleIndicators.checked },
-            { color: '#FF5722', label: '𝟙[0,c₂](x)', visible: toggleIndicators.checked },
-            { color: '#4CAF50', label: 'Diff 1', visible: toggleDifferences.checked }
+            { color: '#2196F3', label: 'f(a) = 𝟙[0,a](x)', visible: toggleIndicators.checked },
+            { color: '#FF5722', label: 'f(b) = 𝟙[0,b](x)', visible: toggleIndicators.checked },
+            { color: '#4CAF50', label: 'Difference', visible: toggleDifferences.checked }
         ];
-        drawLegend(canvas1, ctx1, items);
+        drawLegend(canvas1, ctx1, items, 60);
     }
 
     // Draw legend for canvas2
     function drawLegend2() {
         const items = [
-            { color: '#9C27B0', label: '𝟙[0,c₃](x)', visible: toggleIndicators.checked },
-            { color: '#FF9800', label: '𝟙[0,c₄](x)', visible: toggleIndicators.checked },
-            { color: '#00BCD4', label: 'Diff 2', visible: toggleDifferences.checked }
+            { color: '#9C27B0', label: 'f(c) = 𝟙[0,c](x)', visible: toggleIndicators.checked },
+            { color: '#FF9800', label: 'f(d) = 𝟙[0,d](x)', visible: toggleIndicators.checked },
+            { color: '#00BCD4', label: 'Difference', visible: toggleDifferences.checked }
         ];
-        drawLegend(canvas2, ctx2, items);
+        drawLegend(canvas2, ctx2, items, 60);
     }
 
     // Draw legend for canvas3
     function drawLegend3() {
         const items = [
-            { color: '#E91E63', label: 'Product', visible: true }, // Product is always visible
-            { color: '#4CAF5040', label: 'Diff 1 Area', visible: toggleDifferences.checked },
-            { color: '#00BCD440', label: 'Diff 2 Area', visible: toggleDifferences.checked }
+            { color: '#E91E63', label: 'Inner Product', visible: true }, // Product is always visible
+            { color: '#4CAF5040', label: 'f(b)-f(a) Difference', visible: toggleDifferences.checked },
+            { color: '#00BCD440', label: 'f(d)-f(c) Difference', visible: toggleDifferences.checked }
         ];
-        drawLegend(canvas3, ctx3, items, 80); // Increased height for additional items
+        drawLegend(canvas3, ctx3, items, 60); // Increased height for additional items
     }
 
     c1Slider.addEventListener('input', (e) => {

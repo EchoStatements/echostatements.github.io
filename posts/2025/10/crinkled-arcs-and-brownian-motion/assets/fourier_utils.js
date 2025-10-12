@@ -78,7 +78,7 @@ const FourierUtils = {
         ctx.save();
         ctx.translate(15, canvas.height / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('f(x)', 0, 0);
+        ctx.fillText('ψ(x)', 0, 0);
         ctx.restore();
 
         // Zero line
@@ -104,7 +104,7 @@ const FourierUtils = {
     },
 
     // Function to draw the indicator function
-    drawIndicatorFunction: function(canvas, ctx, plotWidth, plotHeight, c, color) {
+    drawIndicatorFunction: function(canvas, ctx, plotWidth, plotHeight, t, color) {
         ctx.strokeStyle = color;
         ctx.lineWidth = 2;
         ctx.globalAlpha = 0.6;
@@ -114,8 +114,8 @@ const FourierUtils = {
 
         ctx.beginPath();
         ctx.moveTo(this.toCanvasX(canvas, plotWidth, 0), this.toCanvasY(canvas, plotHeight, 1));
-        ctx.lineTo(this.toCanvasX(canvas, plotWidth, c), this.toCanvasY(canvas, plotHeight, 1));
-        ctx.lineTo(this.toCanvasX(canvas, plotWidth, c), this.toCanvasY(canvas, plotHeight, 0));
+        ctx.lineTo(this.toCanvasX(canvas, plotWidth, t), this.toCanvasY(canvas, plotHeight, 1));
+        ctx.lineTo(this.toCanvasX(canvas, plotWidth, t), this.toCanvasY(canvas, plotHeight, 0));
         ctx.lineTo(this.toCanvasX(canvas, plotWidth, 1), this.toCanvasY(canvas, plotHeight, 0));
         ctx.stroke();
 
@@ -126,10 +126,10 @@ const FourierUtils = {
         ctx.fillStyle = color;
         ctx.globalAlpha = 1;
         ctx.beginPath();
-        ctx.arc(this.toCanvasX(canvas, plotWidth, c), this.toCanvasY(canvas, plotHeight, 1), 4, 0, 2 * Math.PI);
+        ctx.arc(this.toCanvasX(canvas, plotWidth, t), this.toCanvasY(canvas, plotHeight, 1), 4, 0, 2 * Math.PI);
         ctx.fill();
         ctx.beginPath();
-        ctx.arc(this.toCanvasX(canvas, plotWidth, c), this.toCanvasY(canvas, plotHeight, 0), 4, 0, 2 * Math.PI);
+        ctx.arc(this.toCanvasX(canvas, plotWidth, t), this.toCanvasY(canvas, plotHeight, 0), 4, 0, 2 * Math.PI);
         ctx.fill();
     },
 
@@ -173,7 +173,8 @@ const FourierUtils = {
         ctx.strokeStyle = '#ddd';
         ctx.lineWidth = 1;
         ctx.fillRect(legendX - 10, legendY - 10, 190, legendHeight);
-        ctx.strokeRect(legendX - 10, legendY - 10, 190, legendHeight);
+        // Removed the box around the legend items as per requirements
+        // ctx.strokeRect(legendX - 10, legendY - 10, 190, legendHeight);
 
         ctx.font = '12px Arial';
         ctx.textAlign = 'left';
@@ -211,24 +212,24 @@ const FourierUtils = {
     },
 
     // Function to calculate the Fourier series approximation with cosine basis
-    calculateFourierApproximation: function(x, c, components) {
-    let result = c; // a0/2 = c
+    calculateFourierApproximation: function(x, t, components) {
+    let result = t; // a0/2 = t
     for (let n = 1; n < components; n++) {
         result += (2 / (n * Math.PI)) *
-                  Math.sin(n * Math.PI * c) *
+                  Math.sin(n * Math.PI * t) *
                   Math.cos(n * Math.PI * x);
     }
     return result;
     },
 
     // Function to calculate the half-integer cosine wave approximation
-    calculateHalfIntegerCosineApproximation: function(x, c, components) {
+    calculateHalfIntegerCosineApproximation: function(x, t, components) {
         let result = 0;
 
-        // Using the formula: sqrt(2) cos((k-0.5) pi x) with coefficients sqrt(2) * sin((k-0.5) pi c) / ((k-0.5)*pi)
+        // Using the formula: sqrt(2) cos((k-0.5) pi x) with coefficients sqrt(2) * sin((k-0.5) pi t) / ((k-0.5)*pi)
         for (let k = 1; k <= components; k++) {
             const term = (k - 0.5) * Math.PI;
-            result += (Math.sqrt(2) / term) * Math.sin(term * c) * Math.sqrt(2) * Math.cos(term * x);
+            result += (Math.sqrt(2) / term) * Math.sin(term * t) * Math.sqrt(2) * Math.cos(term * x);
         }
 
         return result;
