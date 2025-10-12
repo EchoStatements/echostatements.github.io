@@ -97,7 +97,6 @@ as the pink area in the bottom plot). When the intervals overlap, there are valu
 both differences give a non-zero value at $$x$$, contributing to a non-zero inner product. When 
 they don't overlap, the product is zero everywhere, meaning that the functions are orthogonal.
 
-![img.png](indicator_teaser.png)
 <div class="container">
     <h3>Interactive Visualization of Indicator Functions</h3>
 
