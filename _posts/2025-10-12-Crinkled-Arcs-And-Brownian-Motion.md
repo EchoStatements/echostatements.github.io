@@ -236,7 +236,7 @@ approximations of the infinite sum, we get a good approximation of the indicator
 <div class="container">
     <h3>Interactive Visualization of Fourier Series Approximation</h3>
     <div class="description">
-        Visualization of the Fourier series approximation of an indicator function 𝟙<sub>[0,c]</sub>(x) on [0,1]
+        Visualization of the Fourier series approximation of an indicator function 𝟙<sub>[0,t]</sub>(x) on [0,1]
     </div>
 
     <div class="plot-container">
@@ -263,20 +263,6 @@ approximations of the infinite sum, we get a good approximation of the indicator
         </div>
     </div>
 
-    <div class="description" style="margin-top: 20px;">
-        <p>
-            This visualization shows how a Fourier series can approximate an indicator function.
-            The indicator function 𝟙<sub>[0,c]</sub>(x) equals 1 for x ≤ c and 0 for x > c.
-        </p>
-        <p>
-            The Fourier series approximation is given by:
-            f(x) = 0.5 + ∑<sub>n=1</sub><sup>N</sup> (2/(nπ)) sin(nπc) cos(nπx)
-        </p>
-        <p>
-            Adjust the c value to change the indicator function's cutoff point.
-            Adjust the number of components to see how the approximation improves with more terms.
-        </p>
-    </div>
 </div>
 
 <link rel="stylesheet" href="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/styles.css">
@@ -327,7 +313,7 @@ target function, they also converge faster to each other.
 <div class="container">
     <h3>Interactive Visualization of Fourier Series Approximations</h3>
     <div class="description">
-        Visualization of Fourier series approximations of an indicator function 𝟙<sub>[0,c]</sub>(x) on [0,1]
+        Visualization of Fourier series approximations of an indicator function 𝟙<sub>[0,t]</sub>(x) on [0,1]
     </div>
 
     <div class="plot-container">
@@ -337,7 +323,7 @@ target function, they also converge faster to each other.
     <div class="controls">
         <div class="control-group">
             <h3>Indicator Function Parameter</h3>
-            <h4>c value (cutoff point)</h4>
+            <h4>t value</h4>
             <div class="slider-container">
                 <input type="range" id="c-slider" min="0" max="1" step="0.01" value="0.5">
                 <span class="value-display" id="c-value">0.50</span>
@@ -354,24 +340,6 @@ target function, they also converge faster to each other.
         </div>
     </div>
 
-    <div class="description" style="margin-top: 20px;">
-        <p>
-            This visualization shows how different Fourier series can approximate an indicator function.
-            The indicator function 𝟙<sub>[0,c]</sub>(x) equals 1 for x ≤ c and 0 for x > c.
-        </p>
-        <p>
-            The cosine basis approximation (pink) is given by:
-            f(x) = 0.5 + ∑<sub>n=1</sub><sup>N</sup> (√2/(nπ)) sin(nπc) cos(nπx)
-        </p>
-        <p>
-            The half-integer sine basis approximation (green) is given by:
-            f(x) = ∑<sub>k=1</sub><sup>N</sup> (√2/(k-1/2)π) sin((k-1/2)πc) · √2 sin((k-1/2)πx)
-        </p>
-        <p>
-            Adjust the c value to change the indicator function's cutoff point.
-            Adjust the number of components to see how the approximations improve with more terms.
-        </p>
-    </div>
 </div>
 
 <link rel="stylesheet" href="/posts/2025/10/crinkled-arcs-and-brownian-motion/assets/styles.css">
