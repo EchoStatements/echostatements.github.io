@@ -36,7 +36,7 @@ property, as it is observed that ["seem to be making a sudden right angle turn a
 quality.
 
 
-More formally, if $$X$$ is equipt with an inner product $$\langle \cdot, \cdot \rangle$$, then
+More formally, if $$X$$ is equipped with an inner product $$\langle \cdot, \cdot \rangle$$, then
 we say that $$f: [0,1] \to X$$ is a crinkled arc if $$f$$ is a continuous function such that for 
 all $$ 0 \leq a < b \leq c < d \leq 
 1$$,
