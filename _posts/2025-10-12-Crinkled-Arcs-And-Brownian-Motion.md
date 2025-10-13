@@ -217,9 +217,9 @@ remembering that $$f(t)$$ is the interval indicator function for the interval $$
 
 $$\begin{aligned} a_n(t) &= \langle \phi_n, f(t) \rangle \\
 &=\int_0^1 f(t)(x) \phi_n(x) \, dx\\
-&= \int_0^t \phi_n(x) \\
+&= \int_0^t \phi_n(x) \, dx \\
 &= \int_0^t \sqrt 2 \cos (n \pi x) \,dx \\
-&= -\frac{\sqrt 2}{n \pi} \sin (n \pi t) \end{aligned}$$
+&= \frac{\sqrt 2}{n \pi} \sin (n \pi t) \end{aligned}$$
 
 and for $$n=0$$ we have
 
@@ -312,7 +312,7 @@ With this change, we can once again calculate the coefficients in the same way t
 
 $$\begin{aligned} a_n(t) &= \langle \phi_n, f(t)\rangle\\
 &=\int_0^1 f(t)(x) \phi_n(x) \, dx\\
-&= \int_0^t \phi_n(x) \\
+&= \int_0^t \phi_n(x) \, dx \\
 &= \int_0^t \sqrt 2 \cos ( (n - \frac{1}{2})\pi x) \,dx \\
 &= -\frac{\sqrt 2}{ (n - \frac{1}{2})\pi } \sin ( (n - \frac{1}{2})\pi t) \end{aligned}$$
 
