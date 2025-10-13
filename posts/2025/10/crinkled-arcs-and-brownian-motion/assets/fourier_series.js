@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Draw the half-integer cosine wave approximation
         utils.drawCurve(canvas, ctx, plotWidth, plotHeight, 
             (x) => utils.calculateHalfIntegerCosineApproximation(x, c, components), 
-            '#4CAF50');
+            '#5679B4FF');
 
         // Draw the legend
         utils.drawLegend(canvas, ctx, [
             { color: '#2196F3', label: 'Indicator Function', alpha: 0.6, dashed: true },
             { color: '#E91E63', label: 'Cosine Basis Approximation' },
-            { color: '#4CAF50', label: 'Half-Integer Cosine Approximation' }
+            { color: '#5679B4FF', label: 'Half-Integer Cosine Approximation' }
         ]);
     }
 
