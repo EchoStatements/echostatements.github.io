@@ -541,7 +541,6 @@ Vitale, Richard A. "Representation of a crinkled arc." Proceedings of the Americ
 ```
 [^normalise]: see [here](https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28n+pi+x%29+dx+between+0+and+1) for evaluation of the integral.
 
-[^derivation]: Given the solution that we find, this can be done by rescaling and using the 
-completeness of the set of $$\cos(n \pi x)$$ as a basis for $$L^2(0,1)$$.
+[^derivation]: Given the solution that we find, this can be done by rescaling and using the completeness of the set of $$\cos(n \pi x)$$ as a basis for $$L^2(0,1)$$.
 
 [^derivation2]: At least the way that I would currently attempt it.
