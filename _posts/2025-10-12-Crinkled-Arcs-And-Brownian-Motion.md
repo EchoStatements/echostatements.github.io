@@ -12,13 +12,13 @@ tags:
 A crinkled arc is a continuous curve that appears as if it is making 
 right-angle turns at every point along its trajectory. Additionally, if you draw a straight line 
 between two recent points and compare that line to a line drawn between any two points in its more
-distance past, you will find that these two lines are also perpendicular.
+distant past, you will find that these two lines are also perpendicular.
 
 On first hearing about the crinkled arc, 
-this feels really weird, and it may not be clear that such a curve should exist at all, even if 
+this feels really weird. It may not be clear that such a curve should exist at all, even if 
 we allow ourselves an infinite-dimensional space to draw it 
 in. However, it turns out that not only do such curves exist, there are ways of constructing 
-them so that the fact that they have these properties begins to feel obvious.
+them so that their properties begin to feel obvious.
 In this post, I describe two such ways that 
 crinkled arcs have been constructed, the first by defining it as a path through a space of 
 functions 
@@ -26,7 +26,7 @@ and the second drawing a connection to Brownian motion, the random movement of p
 
 ## Crinkled Arcs
 
-We begin by giving a more formal definition of what a crinkled arc is.
+We begin by giving a definition of what a crinkled arc is.
 
 A crinkled arc is a continuous function $$f$$ from the unit interval to a Hilbert space $$X$$
 such that for 
@@ -50,8 +50,8 @@ normalisation procedures) are of the form
 $$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) 
 \pi},$$
 
-Where $${\phi_n}$$ are an orthonormal set defining a subspace of $$X$$. While this is indeed a 
-crinkled arc (as we are about to prove), it is not immediately obvious, and in fact that we can 
+where $${\phi_n}$$ are an orthonormal set defining a subspace of $$X$$. While this is indeed a 
+crinkled arc (as we will prove), it is not immediately obvious, and in fact that we can 
 construct crinkled arcs in a more intuitive way. 
 
 ## Building an Arc
@@ -80,9 +80,9 @@ Remember that for crinkled arcs, we want
 $$ \langle f(b) - f(a), f(d) - f(c) \rangle = 0$$ for all 
 $$0 \leq a < b \leq c < d$$. This gives us an idea for how to construct a solution:
 if the function 
-$$\phi = f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$\psi = f(d)-f(c)$$ is zero 
+$$\varphi = f(b)-f(a)$$ is zero outside the interval $$[a,b]$$ and $$\psi = f(d)-f(c)$$ is zero 
 outside of the 
-interval $$[c,d]$$, then there is no value of $$x$$ such that both $$\phi(x)$$ and $$\psi(x)$$ 
+interval $$[c,d]$$, then there is no value of $$x$$ such that $$\varphi(x)$$ and $$\psi(x)$$ 
 are both non-zero, and therefore their inner product will also be zero.
 
 The easiest way to do this is with indicator functions. Defining $$𝟙_{[0,t]}(x) = \begin{cases}1 
@@ -188,7 +188,7 @@ So let's try using the [Fourier series](https://scholar.harvard.edu/files/schwar
 to find a basis and to see what the components look like.
 
 Recall that absolutely integrable periodic function with period 2 and only finitely many maxima, 
-minima and discontinuities can be written as:
+minima and discontinuities can be written as a Fourier series as:
 
 $$\varphi(x) = a_0 + \sum_{n=1}^\infty a_n \cos nx + \sum_{n=1}^\infty b_n \sin nx,$$
 
@@ -238,9 +238,10 @@ This solution can be verified using the visualisation below, showing that even w
 approximations of the infinite sum, we get a good approximation of the indicator function.
 
 <div class="container">
-    <h3>Interactive Visualization of Fourier Series Approximation</h3>
+    <h3>Visualisation of Fourier Series Approximation</h3>
     <div class="description">
-        Visualization of the Fourier series approximation of an indicator function 𝟙<sub>[0,t]</sub>(x) on [0,1]
+        Interactive Visualisation of the Fourier series approximation of an indicator function 
+𝟙<sub>[0,t]</sub>(x) on [0,1]
     </div>
 
     <div class="plot-container">
@@ -261,8 +262,8 @@ approximations of the infinite sum, we get a good approximation of the indicator
             <h3>Fourier Series Components</h3>
             <h4>Number of components</h4>
             <div class="slider-container">
-                <input type="range" id="components-slider-cosine" min="1" max="200" step="1" value="3">
-                <span class="value-display" id="components-value-cosine">3</span>
+                <input type="range" id="components-slider-cosine" min="1" max="200" step="1" value="10">
+                <span class="value-display" id="components-value-cosine">10</span>
             </div>
         </div>
     </div>
@@ -298,13 +299,13 @@ and is left
 as a potential topic for a future post.
 
 I wasn't able to find the form of these basis functions anywhere, though looking at the 
-coefficients, they can be guessed at pretty easily, and then we can verify that the guess is 
+coefficients, they can be guessed at pretty easily, and we will verify that the guess is 
 correct. 
 Given that the coefficients we are expecting look a lot  like the coefficients we just derived for 
 the Fourier series but with $$n$$ shifted by $$\frac{1}{2}$$, we choose the new basis functions 
 to 
 $$\phi_n$$ to have that same shift
-$$\phi_n(x) = \sqrt{2} \cos \left( (n - \frac{1}{2}) \pi x \right)$$. Note that have to 
+$$\phi_n(x) = \sqrt{2} \cos \left( (n - \frac{1}{2}) \pi x \right)$$. Note that we have to 
 [check](https://www.wolframalpha.com/input?i=integral+of+cos%5E2%28%28n-%281%2F2%29%29+pi+x%29+dx+between+0+and+1) that 
 $$\sqrt{2}$$ remains the correct normalisation constant.
 
@@ -320,14 +321,15 @@ Since this time there is no $$\phi_0$$ coefficient, we get the solution:
 
 $$f(t) = \sqrt{2} \sum_{n=1}^\infty \phi_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi}.$$
 
-We can once again show that this solution makes sense by plotting, as shown in the following
-visualisation. It's interesting to observe that while both series (unsurprisingly) converge to the 
-target function, they also converge faster to each other.
+This is indeed the form we were looking for. We can once again show that this solution makes 
+sense by plotting, as shown in the following visualisation. It's interesting to observe that while both 
+series (unsurprisingly) converge to the target function, they also converge faster to each other.
 
 <div class="container">
-    <h3>Interactive Visualization of Fourier Series Approximations</h3>
+    <h3>Visualisation of Fourier Series Approximations</h3>
     <div class="description">
-        Visualization of Fourier series approximations of an indicator function 𝟙<sub>[0,t]</sub>(x) on [0,1]
+        Interactive Visualisation of Fourier series approximations of an indicator function 
+𝟙<sub> [0,t]</sub>(x) on [0,1]
     </div>
 
     <div class="plot-container">
@@ -348,8 +350,8 @@ target function, they also converge faster to each other.
             <h3>Fourier Series Components</h3>
             <h4>Number of components</h4>
             <div class="slider-container">
-                <input type="range" id="components-slider" min="1" max="200" step="1" value="3">
-                <span class="value-display" id="components-value">3</span>
+                <input type="range" id="components-slider" min="1" max="200" step="1" value="5">
+                <span class="value-display" id="components-value">5</span>
             </div>
         </div>
     </div>
@@ -363,7 +365,7 @@ target function, they also converge faster to each other.
 
 ## What Does This Have to do With Brownian Motion?
 
-Brownian motion is the random motion of particles suspended in a medium consisting of smaller 
+[Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion) is the random motion of particles suspended in a medium consisting of smaller 
 particles, such as small motes of dust floating in the air or grains of pollen on the surface of 
 water (the latter example being the original case of Brownian motion that Robert Brown observed).
 
@@ -416,8 +418,8 @@ inner product to be the covariance (after proving that covariance fits all the n
 criteria for an inner product). But, now we know that $$W_t$$'s live in a Hilbert space, and their
 trajectory fits all the properties that $$W_t$$ has to follow a crinkled arc.
 
-More than that, since we know that for the crinkled arc, there is an orthonormal basis $$\{X_n\}$$ 
-such that 
+More than that, since we know that $$W_t$$ fits the definition for the crinkled arc, there is an 
+orthonormal basis $$\{X_n\}$$ such that 
 
 $$W_t = \sqrt{2} \sum_{n=1}^\infty X_n \frac{\sin((n-\frac{1}{2})\pi t)}{(n-\frac{1}{2}) \pi},$$
 
@@ -425,9 +427,8 @@ Now what are the basis vectors? They're independent normal distributions with ze
 variance! We get that they're normally distributed because they are a basis for the space spanned by
 $$W_t$$, which consists solely of zero-mean normally distributed variables (to see that 
 $$W_t$$ is normally distributed consider that $$W_t = W_t-W_0$$ follows a normal distribution 
-and that $$W_0$$ is almost-surely zero). And by the 
-criterion that the basis form an 
-orthonormal set guarantee unit variance (by normalisation) and independence (by orthogonality).
+and that $$W_0$$ is almost-surely zero), and normal distributions are closed under addition.
+And by the criterion that the basis form an orthonormal set guarantee unit variance (by normalisation) and independence (by orthogonality).
 
 Though this representation of Brownian motion is well-known in the literature, this is not the 
 usual derivation. Indeed, in proving the generality of the solution for the crinkled arc, [Vitale](https://www.ams.org/journals/proc/1975-052-01/S0002-9939-1975-0388056-1/S0002-9939-1975-0388056-1.pdf)
@@ -446,7 +447,7 @@ a random walk as step size increases, and two using our series approximations to
 number of terms.
 
 <div class="container">
-    <h3>Interactive Visualization of Brownian Motion</h3>
+    <h3>Interactive Visualisation of Brownian Motion</h3>
 
     <div class="plot-container">
         <canvas id="brownian-canvas1" width="800" height="300"></canvas>
@@ -494,7 +495,8 @@ number of terms.
     </div>
     <div class="description" style="margin-top: 20px;">
         <p>
-            This visualization demonstrates two methods for simulating Brownian motion on the interval [0,1].
+            This visualisation demonstrates three methods for simulating Brownian motion on the 
+interval [0,1].
         </p>
     </div>
 </div>
@@ -514,7 +516,9 @@ The original motivation for this post was to clarify for myself the relationship
 three descriptions, giving more space to elucidate the relationship between the crinkled arc and 
 Brownian motion than I was able to find in the literature. I was somewhat surprised to find the 
 definition of the basis functions for the crinkled arc in $$L^2(0,1)$$ did not appear in any sources
-that I found. In exploring these connections, I hope that this post can serve as reasonable 
+that I found, though would be interested in being pointed to any sources that I missed.
+
+In exploring these connections, I hope that this post can serve as reasonable 
 introduction to the crinkled arc and make its properties seem a little less unintuitive.
 
 

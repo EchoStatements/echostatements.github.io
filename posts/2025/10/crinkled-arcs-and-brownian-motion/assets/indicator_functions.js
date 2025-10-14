@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const c4 = parseFloat(c4Slider.value);
 
         ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
-        drawTitle(canvas3, ctx3, 'Inner Product');
+        drawTitle(canvas3, ctx3, 'Product Function');
         drawAxes(canvas3, ctx3, plotWidth3, plotHeight3);
 
         // Draw the difference areas first if differences are shown
@@ -446,8 +446,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Draw legend for canvas1
     function drawLegend1() {
         const items = [
-            { color: '#2196F3', label: 'f(a) = 𝟙[0,a](x)', visible: toggleIndicators.checked },
-            { color: '#FF5722', label: 'f(b) = 𝟙[0,b](x)', visible: toggleIndicators.checked },
+            { color: '#2196F3', label: 'f(a)(x) = 𝟙[0,a](x)', visible: toggleIndicators.checked },
+            { color: '#FF5722', label: 'f(b)(x) = 𝟙[0,b](x)', visible: toggleIndicators.checked },
             { color: '#4CAF50', label: 'Difference', visible: toggleDifferences.checked }
         ];
         drawLegend(canvas1, ctx1, items, 60);
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Draw legend for canvas3
     function drawLegend3() {
         const items = [
-            { color: '#E91E63', label: 'Inner Product', visible: true }, // Product is always visible
+            { color: '#E91E63', label: 'Product', visible: true }, // Product is always visible
             { color: '#4CAF5040', label: 'f(b)-f(a) Difference', visible: toggleDifferences.checked },
             { color: '#00BCD440', label: 'f(d)-f(c) Difference', visible: toggleDifferences.checked }
         ];
