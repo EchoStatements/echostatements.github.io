@@ -1,8 +1,8 @@
 https://echostatements.github.io/
 https://echostatements.github.io/posts/
-https://echostatements.github.io/posts/2025/10/crinkled-arcs-and-brownian-motion
-https://echostatements.github.io/posts/2025/07/faster-siamese-network-training-and-inference
-https://echostatements.github.io/posts/2023/02/visualising_the_legendre_transform
+https://echostatements.github.io/posts/2025/10/crinkled-arcs-and-brownian-motion/
+https://echostatements.github.io/posts/2025/07/faster-siamese-network-training-and-inference/
+https://echostatements.github.io/posts/2023/02/visualising_the_legendre_transform/
 https://echostatements.github.io/categories/
 https://echostatements.github.io/tags/
 https://echostatements.github.io/publications/
