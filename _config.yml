@@ -170,6 +170,10 @@ exclude:
   - assets/js/_main.js
   - assets/js/plugins
   - assets/js/vendor
+  - talkmap/
+  - talkmap.py
+  - talkmap.ipynb
+  - talkmap_out.ipynb
   - CHANGELOG
   - Capfile
   - config
@@ -215,16 +219,16 @@ kramdown:
 # These settings control the types of collections used by the template
 collections:
   teaching:
-    output: true
+    output: false
     permalink: /:collection/:path/
   publications:
     output: true
     permalink: /:collection/:path/
   portfolio:
-    output: true
+    output: false
     permalink: /:collection/:path/
   talks:
-    output: true
+    output: false
     permalink: /:collection/:path/
 
 
