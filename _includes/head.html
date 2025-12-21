@@ -4,12 +4,17 @@
 
 {%- comment -%}
   Failsafe redirect for GitHub Pages: use meta refresh to send all pages
-  to the same path on echostatements.net. This runs even if JS is blocked.
-  Guarded to allow local `jekyll serve` previews.
+  through /404.html which we know reliably redirects to echostatements.net.
+  This runs even if JS is blocked. Guarded to allow local `jekyll serve`
+  previews and to avoid triggering on the 404 page itself.
 {%- endcomment -%}
 {% if jekyll.environment != 'development' %}
   <link rel="canonical" href="https://echostatements.net{{ page.url }}" />
-  <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
+  {% unless page.url == "/404.html" or page.permalink == "/404.html" %}
+    <!-- Prefer direct hop to .net preserving path; fallback to 404 relay if blocked -->
+    <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
+    <meta http-equiv="refresh" content="1; url=/404.html?path={{ page.url | uri_escape }}">
+  {% endunless %}
 {% endif %}
 
 <script>
