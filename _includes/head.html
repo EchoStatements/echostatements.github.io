@@ -2,6 +2,16 @@
 
 <meta charset="utf-8">
 
+{%- comment -%}
+  Failsafe redirect for GitHub Pages: use meta refresh to send all pages
+  to the same path on echostatements.net. This runs even if JS is blocked.
+  Guarded to allow local `jekyll serve` previews.
+{%- endcomment -%}
+{% if jekyll.environment != 'development' %}
+  <link rel="canonical" href="https://echostatements.net{{ page.url }}" />
+  <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
+{% endif %}
+
 <script>
   (function () {
     var targetHost = 'echostatements.net';
@@ -18,8 +28,8 @@
   })();
 </script>
 <noscript>
-  <meta http-equiv="refresh" content="0; url=https://echostatements.net">
-  <link rel="canonical" href="https://echostatements.net" />
+  <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
+  <link rel="canonical" href="https://echostatements.net{{ page.url }}" />
   <meta name="robots" content="noindex">
 </noscript>
 
