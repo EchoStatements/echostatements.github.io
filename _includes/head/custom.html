@@ -2,25 +2,6 @@
 
 <!-- start custom head snippets -->
 
-<script>
-  (function () {
-    var targetHost = 'echostatements.net';
-    var h = window.location.hostname;
-
-    // Avoid redirect loops and allow local previews
-    var isAlreadyTarget = h === targetHost || h.endsWith('.' + targetHost);
-    var isLocal = h === 'localhost' || h === '127.0.0.1';
-
-    if (!isAlreadyTarget && !isLocal) {
-      var dest = 'https://' + targetHost + window.location.pathname + window.location.search + window.location.hash;
-      window.location.replace(dest);
-    }
-  })();
-  </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=https://echostatements.net">
-  </noscript>
-
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 

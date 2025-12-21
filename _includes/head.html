@@ -2,6 +2,27 @@
 
 <meta charset="utf-8">
 
+<script>
+  (function () {
+    var targetHost = 'echostatements.net';
+    var h = window.location.hostname;
+
+    // Avoid redirect loops and allow local previews
+    var isAlreadyTarget = h === targetHost || h.endsWith('.' + targetHost);
+    var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0';
+
+    if (!isAlreadyTarget && !isLocal) {
+      var dest = 'https://' + targetHost + window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(dest);
+    }
+  })();
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="0; url=https://echostatements.net">
+  <link rel="canonical" href="https://echostatements.net" />
+  <meta name="robots" content="noindex">
+</noscript>
+
 {% include seo.html %}
 
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
