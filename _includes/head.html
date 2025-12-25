@@ -3,29 +3,22 @@
 <meta charset="utf-8">
 
 {%- comment -%}
-  Failsafe redirect for GitHub Pages: use meta refresh to send all pages
-  through /404.html which we know reliably redirects to echostatements.net.
-  This runs even if JS is blocked. Guarded to allow local `jekyll serve`
-  previews and to avoid triggering on the 404 page itself.
+  This head intentionally avoids any canonical tags. It adds a noindex and a
+  redirect to echostatements.net where appropriate.
 {%- endcomment -%}
 {% if jekyll.environment != 'development' %}
-  <link rel="canonical" href="https://echostatements.net{{ page.url }}" />
   {% unless page.url == "/404.html" or page.permalink == "/404.html" %}
-    <!-- Prefer direct hop to .net preserving path; fallback to 404 relay if blocked -->
     <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
-    <meta http-equiv="refresh" content="1; url=/404.html?path={{ page.url | uri_escape }}">
   {% endunless %}
+  <meta name="robots" content="noindex">
 {% endif %}
 
 <script>
   (function () {
     var targetHost = 'echostatements.net';
     var h = window.location.hostname;
-
-    // Avoid redirect loops and allow local previews
     var isAlreadyTarget = h === targetHost || h.endsWith('.' + targetHost);
     var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0';
-
     if (!isAlreadyTarget && !isLocal) {
       var dest = 'https://' + targetHost + window.location.pathname + window.location.search + window.location.hash;
       window.location.replace(dest);
@@ -34,24 +27,20 @@
 </script>
 <noscript>
   <meta http-equiv="refresh" content="0; url=https://echostatements.net{{ page.url }}">
-  <link rel="canonical" href="https://echostatements.net{{ page.url }}" />
   <meta name="robots" content="noindex">
+  <!-- No canonical tag on purpose -->
+  <style>body{visibility:hidden}</style>
+  Redirecting… If you are not redirected, <a href="https://echostatements.net{{ page.url }}">click here</a>.
+  <style>body{visibility:visible}</style>
 </noscript>
 
-{% include seo.html %}
-
+<!-- Minimal styles/scripts only; no SEO include to avoid canonical emission -->
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
-
-<!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
+  </script>
 <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
-
 <meta http-equiv="cleartype" content="on">
